@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "281822397452",
+    "project_id": "chit-game-23552",
+    "storage_bucket": "chit-game-23552.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:281822397452:android:c468687eed82665d891a29",
+        "android_client_info": {
+          "package_name": "com.example.chit_game"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "281822397452-0gh3a0argick2qq16e2ueng24bk8t6jc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.chit_game",
+            "certificate_hash": "88df4d3517cfed00ee41d429cdc99462d95e470a"
+          }
+        },
+        {
+          "client_id": "281822397452-52h96pbkd7lgh1pt2bkhc5s757rflp4k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBO4NcUbOLvqYrE4iMtnQM5PpG8aCfoxcs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "281822397452-52h96pbkd7lgh1pt2bkhc5s757rflp4k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
