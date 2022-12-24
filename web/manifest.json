@@ -1,6 +1,6 @@
 {
-    "name": "chit_game",
-    "short_name": "chit_game",
+    "name": "chit_game_android",
+    "short_name": "chit_game_android",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

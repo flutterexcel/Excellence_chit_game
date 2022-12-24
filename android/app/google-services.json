@@ -1,0 +1,76 @@
+{
+  "project_info": {
+    "project_number": "940420797087",
+    "project_id": "chit-game-7dbd4",
+    "storage_bucket": "chit-game-7dbd4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:940420797087:android:fd4134d73bc405fd8288aa",
+        "android_client_info": {
+          "package_name": "com.example.chit_game"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "940420797087-qvp9iomg59u25ssg81qnb4na6bng82su.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHCJg7B6ijX3Qujln4cRJEarSv-vM1Fh8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "940420797087-qvp9iomg59u25ssg81qnb4na6bng82su.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:940420797087:android:939204f66809bb598288aa",
+        "android_client_info": {
+          "package_name": "com.example.chit_game_android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "940420797087-mirg6lmqfr1j77qdpuo9fn8qnqg93l9g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.chit_game_android",
+            "certificate_hash": "85bdd172e5a12e2b4e22a076abac873384b88a0a"
+          }
+        },
+        {
+          "client_id": "940420797087-qvp9iomg59u25ssg81qnb4na6bng82su.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHCJg7B6ijX3Qujln4cRJEarSv-vM1Fh8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "940420797087-qvp9iomg59u25ssg81qnb4na6bng82su.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

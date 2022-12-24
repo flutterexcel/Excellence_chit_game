@@ -1,4 +1,4 @@
-# chit_game
+# chit_game_android
 
 A new Flutter project.
 
