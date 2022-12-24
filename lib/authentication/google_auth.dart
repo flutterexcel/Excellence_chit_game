@@ -114,7 +114,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
 
-import '../login_controller.dart';
+import '../controller/login_controller.dart';
 // import 'google_controller.dart';
 
 // import 'package:chit_game/login_controller.dart';
@@ -124,8 +124,10 @@ class GoogleAuth extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.lime,
       appBar: AppBar(
-        title: const Text('Login Page'),
+        title: const Text('Welcome to login page'),
+        backgroundColor: Colors.brown,
       ),
       // ignore: prefer_const_constructors
       body: Center(
@@ -177,41 +179,44 @@ class GoogleAuth extends StatelessWidget {
   }
 
   Widget buildloginbutton(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(
-          height: 90,
-        ),
-        FloatingActionButton.extended(
-          onPressed: (() {
-            controller.login();
-          }),
-          icon: Image.asset(
-            'assets/images/google_logo.png',
-            height: 32,
-            width: 32,
+    return Padding(
+      padding: const EdgeInsets.only(top: 170),
+      child: Column(
+        children: [
+          const SizedBox(
+            height: 90,
           ),
-          label: const Text('Sign in with Google'),
-          backgroundColor: Colors.white,
-          foregroundColor: Colors.black,
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        FloatingActionButton.extended(
-          onPressed: (() {
-            facebookLogin(context);
-          }),
-          icon: Image.asset(
-            'assets/images/facebook_logo.png',
-            height: 32,
-            width: 32,
+          FloatingActionButton.extended(
+            onPressed: (() {
+              controller.login();
+            }),
+            icon: Image.asset(
+              'assets/images/google_logo.png',
+              height: 32,
+              width: 32,
+            ),
+            label: const Text('Sign in with Google'),
+            backgroundColor: Colors.orange,
+            foregroundColor: Colors.black,
           ),
-          label: const Text('Sign in with Google'),
-          backgroundColor: Colors.white,
-          foregroundColor: Colors.black,
-        )
-      ],
+          const SizedBox(
+            height: 20,
+          ),
+          FloatingActionButton.extended(
+            onPressed: (() {
+              facebookLogin(context);
+            }),
+            icon: Image.asset(
+              'assets/images/facebook_logo.png',
+              height: 32,
+              width: 32,
+            ),
+            label: const Text('Sign in with Google'),
+            backgroundColor: Colors.blueAccent,
+            foregroundColor: Colors.black,
+          )
+        ],
+      ),
     );
   }
 
