@@ -46,6 +46,7 @@ dependencies:
   google_sign_in: ^5.4.2
   http: ^0.13.5
   get: ^4.6.5
+  scratcher: ^2.3.0
   # flutter_login_facebook: ^1.7.0
   # flutter_facebook_auth_platform_interface: ^4.1.1
 

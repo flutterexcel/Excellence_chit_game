@@ -1,7 +1,7 @@
 // ignore_for_file: file_names, duplicate_ignore
 import 'dart:async';
 //import 'package:chit_game/login_page.dart';
-import 'package:chit_game_android/screens/google_auth.dart';
+import 'package:chit_game_android/authentication/google_auth.dart';
 import 'package:flutter/material.dart';
 // import 'package:chit_game_android/auth/facebook_auth.dart';
 
