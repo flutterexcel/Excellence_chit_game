@@ -43,7 +43,7 @@ class _ProfileState extends State<Profile> {
       // backgroundColor: Colors.lime,
       appBar: AppBar(
         title: const Center(child: Text('Welcome')),
-        backgroundColor: Colors.brown,
+        backgroundColor: Colors.deepPurple,
       ),
       body: Container(
         decoration: const BoxDecoration(
@@ -114,29 +114,26 @@ class _ProfileState extends State<Profile> {
           },
         ),
         const SizedBox(
-          height: 30,
+          height: 8,
         ),
-
-        // Padding(
-        //   padding: const EdgeInsets.symmetric(horizontal: 55),
-        //   child: Row(
-        //     children: [
-        //       Text(
-        //         "Your available credit :",
-        //         style: TextStyle(color: Colors.orange, fontSize: 25),
-        //       ),
-        //       Text(
-        //         widget.controller.googleAccount.value?.email ?? '',
-        //       ),
-        //     ],
-        //   ),
-        // ),
-        // buildCredit(widget.controller.googleAccount.value!.id),
-
-        Text("Your available credit :$cred"),
+        Padding(
+          padding: const EdgeInsets.only(right: 0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                  child: Text('Your credit : $cred',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20))),
+            ],
+          ),
+        ),
+        // Text("Your available credit :$cred"),
 
         const SizedBox(
-          height: 60,
+          height: 40,
         ),
         Container(
           height: 60,

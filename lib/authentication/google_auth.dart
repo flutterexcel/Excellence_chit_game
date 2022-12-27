@@ -23,17 +23,26 @@ class GoogleAuth extends StatelessWidget {
       ),
       // ignore: prefer_const_constructors
       // body: Profile(),
-      body: Center(
-        child: Obx(() {
-          if (controller.googleAccount.value == null) {
-            return buildloginbutton(context);
-          } else {
-            return SizedBox();
-          }
-          // else {
-          //   return buildprofileview();
-          // }
-        }),
+      body: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                // transform: GradientRotation(15.0),
+                colors: <Color>[
+              Color(0xffC33764),
+              Color(0xffC1D2671),
+            ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+        child: Center(
+          child: Obx(() {
+            if (controller.googleAccount.value == null) {
+              return buildloginbutton(context);
+            } else {
+              return SizedBox();
+            }
+            // else {
+            //   return buildprofileview();
+            // }
+          }),
+        ),
       ),
     );
   }
@@ -94,7 +103,7 @@ class GoogleAuth extends StatelessWidget {
               width: 32,
             ),
             label: const Text('Sign in with Google'),
-            backgroundColor: Colors.orange,
+            backgroundColor: Colors.white,
             foregroundColor: Colors.black,
           ),
           const SizedBox(

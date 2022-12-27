@@ -75,6 +75,7 @@ class LoginController extends GetxController {
 
   logout(context) async {
     googleAccount.value = await _googleSignin.disconnect();
+    // Navigator.pop(context);
     Navigator.of(context)
         .pushReplacement(MaterialPageRoute(builder: (context) => GoogleAuth()));
   }
