@@ -20,7 +20,7 @@ class GoogleAuth extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Center(child: Text('Welcome to Chit Game')),
-        backgroundColor: Colors.brown,
+        backgroundColor: Colors.deepPurple,
       ),
       // ignore: prefer_const_constructors
       // body: Profile(),

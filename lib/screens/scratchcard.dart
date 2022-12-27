@@ -48,10 +48,24 @@ class _ScratchPageState extends State<ScratchPage> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            onPressed: (() {
+              Navigator.pop(context);
+            }),
+            icon: Icon(Icons.arrow_back_ios),
+            iconSize: 20,
+          ),
           title: Center(child: const Text("Scratch and Win")),
-          backgroundColor: Colors.red,
+          backgroundColor: Colors.deepPurple,
         ),
         body: Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    // transform: GradientRotation(15.0),
+                    colors: <Color>[
+                  Color(0xffC33764),
+                  Color(0xffC1D2671),
+                ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
             // height: 70,
             // width: 70,
             padding: const EdgeInsets.only(top: 80, right: 20, left: 20),

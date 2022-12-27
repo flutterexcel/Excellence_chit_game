@@ -43,7 +43,7 @@ class _ProfileState extends State<Profile> {
       // backgroundColor: Colors.lime,
       appBar: AppBar(
         title: const Center(child: Text('Welcome')),
-        backgroundColor: Colors.brown,
+        backgroundColor: Colors.deepPurple,
       ),
       body: Container(
         decoration: const BoxDecoration(
@@ -95,18 +95,6 @@ class _ProfileState extends State<Profile> {
         SizedBox(
           height: 8,
         ),
-        // Container(
-        //     height: 10,
-        //     width: 30,
-        //     child: Row(
-        //       children: [
-        //         Text('Your credit :'),
-        //         SizedBox(
-        //           width: 5,
-        //         ),
-        //         const Text('data')
-        //       ],
-        //     )),
 
         // ignore: prefer_const_constructors
         SizedBox(
@@ -130,8 +118,22 @@ class _ProfileState extends State<Profile> {
             // }
           },
         ),
-        const SizedBox(
-          height: 30,
+        SizedBox(
+          height: 8,
+        ),
+        Padding(
+          padding: const EdgeInsets.only(right: 0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                  child: Text('Your credit : $cred',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20))),
+            ],
+          ),
         ),
 
         // Padding(
@@ -150,10 +152,8 @@ class _ProfileState extends State<Profile> {
         // ),
         // buildCredit(widget.controller.googleAccount.value!.id),
 
-        Text("Your available credit :$cred"),
-
         const SizedBox(
-          height: 60,
+          height: 40,
         ),
         Container(
           height: 60,
