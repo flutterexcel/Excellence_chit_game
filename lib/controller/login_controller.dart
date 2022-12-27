@@ -1,6 +1,7 @@
 import 'package:chit_game_android/authentication/google_auth.dart';
 import 'package:chit_game_android/screens/profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -8,8 +9,17 @@ import 'package:google_sign_in/google_sign_in.dart';
 class LoginController extends GetxController {
   final _googleSignin = GoogleSignIn();
   var googleAccount = Rx<GoogleSignInAccount?>(null);
+  late String myCredit;
 
   login(context) async {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+
+    void inputData() {
+      final User? user = auth.currentUser;
+      final uid = user!.uid;
+      // here you write the codes to input the data into firestore
+    }
+
     print("errrr");
 
     googleAccount.value = await _googleSignin.signIn();
@@ -18,6 +28,7 @@ class LoginController extends GetxController {
     if (googleAccount.value!.displayName != null) {
       Navigator.of(context)
           .pushReplacement(MaterialPageRoute(builder: (context) => Profile()));
+      print("gfg");
       final googleuser = {
         "name": googleAccount.value!.displayName,
         "email": googleAccount.value!.email,
@@ -25,31 +36,46 @@ class LoginController extends GetxController {
         "photoUrl": googleAccount.value!.photoUrl,
         "Credit": 10,
       };
-      FirebaseFirestore.instance
+      await FirebaseFirestore.instance
           .collection('users')
           .doc(googleAccount.value!.id)
           .set(googleuser, SetOptions(merge: true));
-      // final docRef = FirebaseFirestore.instance.collection('users').doc(
+      //     Future<User> _fetchUserInfo(String id) async {
+      //   User fetchedUser;
+      //   var snapshot =
+      //       await Firestore.instance.collection('user').document(id).get();
+      //   return User(snapshot);
+      // }
+
+      // FirebaseFirestore.instance
+      //     .collection("users")
+      //     .doc(googleAccount.value!.id)
+      //     .snapshots()
+      //     .listen((event) {
+      //   print("higuybh${event.data()!['Credit']}");
+      //   var cred = {event.data()!['Credit']};
+      // });
+
+      // DocumentSnapshot docRef = await FirebaseFirestore.instance
+      //     .collection("users")
+      //     .doc(
       //       googleAccount.value!.id,
-      //     );
-      // const source = Source.cache;
-      // var Credit;
-      // docRef.get(const GetOptions(source: source)).then(
-      //       (res) => print("object$res"),
-      //       onError: (e) => print("Error completing: $e"),
-      //     );
-      // print("object${googleuser!.Credit}")
+      //     )
+      //     .get();
+      // // print("dfsdfs${docRef.data()!.Credit}");
+      // // docRef.get().then(
+      // //   (DocumentSnapshot doc) {
+      // //     final data = doc.data() as Map<String, dynamic>;
+      // //     // ...
+      // //   },
+      // //   onError: (e) => print("Error getting document: $e"),
+      // // );
     }
-    // print("object${googleAccount.value}");
   }
 
   logout(context) async {
     googleAccount.value = await _googleSignin.disconnect();
-    // if (googleAccount.value!.displayName == null) {
     Navigator.of(context)
         .pushReplacement(MaterialPageRoute(builder: (context) => GoogleAuth()));
-    // }
-
-    // print("object${googleAccount.value}");
   }
 }
