@@ -21,6 +21,13 @@ class _ScratchPageState extends State<ScratchPage> {
           backgroundColor: Colors.red,
         ),
         body: Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    // transform: GradientRotation(15.0),
+                    colors: <Color>[
+                  Color(0xffC33764),
+                  Color(0xffC1D2671),
+                ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
             padding: const EdgeInsets.all(12.0),
             child: GridView.builder(
               itemCount: 9,

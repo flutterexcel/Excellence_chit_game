@@ -72,10 +72,27 @@ class _ProfileState extends State<Profile> {
         ),
         // ignore: prefer_const_constructors
         SizedBox(
-          height: 16,
+          height: 8,
+        ),
+        // Container(
+        //     height: 10,
+        //     width: 30,
+        //     child: Row(
+        //       children: [
+        //         Text('Your credit :'),
+        //         SizedBox(
+        //           width: 5,
+        //         ),
+        //         const Text('data')
+        //       ],
+        //     )),
+
+        // ignore: prefer_const_constructors
+        SizedBox(
+          height: 8,
         ),
         ActionChip(
-          backgroundColor: Color.fromARGB(255, 153, 47, 39),
+          backgroundColor: const Color.fromARGB(255, 153, 47, 39),
           avatar: const Icon(
             Icons.logout,
             color: Colors.white,

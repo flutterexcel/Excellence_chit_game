@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, use_full_hex_values_for_flutter_colors
+
 import 'package:chit_game_android/auth/result.dart';
 import 'package:chit_game_android/screens/profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -16,24 +18,33 @@ class GoogleAuth extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lime,
       appBar: AppBar(
         title: const Center(child: Text('Welcome to Chit Game')),
         backgroundColor: Colors.brown,
       ),
       // ignore: prefer_const_constructors
       // body: Profile(),
-      body: Center(
-        child: Obx(() {
-          if (controller.googleAccount.value == null) {
-            return buildloginbutton(context);
-          } else {
-            return SizedBox();
-          }
-          // else {
-          //   return buildprofileview();
-          // }
-        }),
+      body: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                // transform: GradientRotation(15.0),
+                // ignore: prefer_const_literals_to_create_immutables
+                colors: <Color>[
+              Color(0xffC33764),
+              Color(0xffC1D2671),
+            ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+        child: Center(
+          child: Obx(() {
+            if (controller.googleAccount.value == null) {
+              return buildloginbutton(context);
+            } else {
+              return SizedBox();
+            }
+            // else {
+            //   return buildprofileview();
+            // }
+          }),
+        ),
       ),
     );
   }
@@ -94,7 +105,7 @@ class GoogleAuth extends StatelessWidget {
               width: 32,
             ),
             label: const Text('Sign in with Google'),
-            backgroundColor: Colors.orange,
+            backgroundColor: Color.fromARGB(255, 232, 231, 230),
             foregroundColor: Colors.black,
           ),
           const SizedBox(
@@ -110,7 +121,7 @@ class GoogleAuth extends StatelessWidget {
               width: 32,
             ),
             label: const Text('Sign in with Google'),
-            backgroundColor: Colors.blueAccent,
+            backgroundColor: Color.fromARGB(255, 86, 131, 207),
             foregroundColor: Colors.black,
           )
         ],
