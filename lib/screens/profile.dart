@@ -118,6 +118,7 @@ class _ProfileState extends State<Profile> {
             // }
           },
         ),
+<<<<<<< HEAD
         SizedBox(
           height: 8,
         ),
@@ -151,6 +152,26 @@ class _ProfileState extends State<Profile> {
         //   ),
         // ),
         // buildCredit(widget.controller.googleAccount.value!.id),
+=======
+        const SizedBox(
+          height: 8,
+        ),
+        Padding(
+          padding: const EdgeInsets.only(right: 0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                  child: Text('Your credit : $cred',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20))),
+            ],
+          ),
+        ),
+        // Text("Your available credit :$cred"),
+>>>>>>> 3497621ca99aa036f4fe5fee42c09bda5596c21a
 
         const SizedBox(
           height: 40,

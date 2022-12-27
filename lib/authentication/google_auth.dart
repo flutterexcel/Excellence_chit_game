@@ -28,7 +28,10 @@ class GoogleAuth extends StatelessWidget {
         decoration: BoxDecoration(
             gradient: LinearGradient(
                 // transform: GradientRotation(15.0),
+<<<<<<< HEAD
                 // ignore: prefer_const_literals_to_create_immutables
+=======
+>>>>>>> 3497621ca99aa036f4fe5fee42c09bda5596c21a
                 colors: <Color>[
               Color(0xffC33764),
               Color(0xffC1D2671),
@@ -105,7 +108,11 @@ class GoogleAuth extends StatelessWidget {
               width: 32,
             ),
             label: const Text('Sign in with Google'),
+<<<<<<< HEAD
             backgroundColor: Color.fromARGB(255, 232, 231, 230),
+=======
+            backgroundColor: Colors.white,
+>>>>>>> 3497621ca99aa036f4fe5fee42c09bda5596c21a
             foregroundColor: Colors.black,
           ),
           const SizedBox(
