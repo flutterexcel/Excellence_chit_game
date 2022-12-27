@@ -14,11 +14,11 @@ class LoginController extends GetxController {
   login(context) async {
     final FirebaseAuth auth = FirebaseAuth.instance;
 
-    void inputData() {
-      final User? user = auth.currentUser;
-      final uid = user!.uid;
-      // here you write the codes to input the data into firestore
-    }
+    // void inputData() {
+    //   final User? user = auth.currentUser;
+    //   final uid = user!.uid;
+    //   // here you write the codes to input the data into firestore
+    // }
 
     print("errrr");
 

@@ -120,7 +120,7 @@ class GoogleAuth extends StatelessWidget {
               height: 32,
               width: 32,
             ),
-            label: const Text('Sign in with Google'),
+            label: const Text('Sign in with Facebook'),
             backgroundColor: Color.fromARGB(255, 86, 131, 207),
             foregroundColor: Colors.black,
           )
@@ -138,6 +138,7 @@ class GoogleAuth extends StatelessWidget {
       if (result.status == LoginStatus.success) {
         final userData = await FacebookAuth.i.getUserData();
         print("hello");
+        // ignore: use_build_context_synchronously
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => Result(userData)));
 
@@ -160,7 +161,7 @@ class GoogleAuth extends StatelessWidget {
   //       height: 32,
   //       width: 32,
   //     ),
-  //     label: const Text('Sign in with Google'),
+  //     label: const Text('Sign in with facebook'),
   //     backgroundColor: Colors.white,
   //     foregroundColor: Colors.black,
   //   );
