@@ -19,6 +19,7 @@ class LoginController extends GetxController {
   }
 
   login(context) async {
+    // ignore: unused_local_variable
     final FirebaseAuth auth = FirebaseAuth.instance;
 
     // void inputData() {
