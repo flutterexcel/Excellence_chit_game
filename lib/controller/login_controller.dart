@@ -5,11 +5,18 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController extends GetxController {
   final _googleSignin = GoogleSignIn();
   var googleAccount = Rx<GoogleSignInAccount?>(null);
   late String myCredit;
+  late String match;
+
+  _demoStore(String id) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString("id_value", id);
+  }
 
   login(context) async {
     final FirebaseAuth auth = FirebaseAuth.instance;
@@ -24,22 +31,27 @@ class LoginController extends GetxController {
 
     googleAccount.value = await _googleSignin.signIn();
     print("object${googleAccount.value}");
+    SharedPreferences prefs = await SharedPreferences.getInstance();
 
     if (googleAccount.value!.displayName != null) {
       Navigator.of(context)
           .pushReplacement(MaterialPageRoute(builder: (context) => Profile()));
-      print("gfg");
-      final googleuser = {
-        "name": googleAccount.value!.displayName,
-        "email": googleAccount.value!.email,
-        "id": googleAccount.value!.id,
-        "photoUrl": googleAccount.value!.photoUrl,
-        "Credit": 10,
-      };
-      await FirebaseFirestore.instance
-          .collection('users')
-          .doc(googleAccount.value!.id)
-          .set(googleuser, SetOptions(merge: true));
+      if (prefs.getString("id_value") == null) {
+        _demoStore(googleAccount.value!.id);
+      }
+      if (googleAccount.value!.id != prefs.getString("id_value")) {
+        final googleuser = {
+          "name": googleAccount.value!.displayName,
+          "email": googleAccount.value!.email,
+          "id": googleAccount.value!.id,
+          "photoUrl": googleAccount.value!.photoUrl,
+          "Credit": 10,
+        };
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(googleAccount.value!.id)
+            .set(googleuser, SetOptions(merge: true));
+      }
       //     Future<User> _fetchUserInfo(String id) async {
       //   User fetchedUser;
       //   var snapshot =
