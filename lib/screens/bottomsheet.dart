@@ -89,27 +89,68 @@ showModasheet(BuildContext context) {
                             //   rd = !rd;
                             // });
                           })),
-                      Column(
-                        // ignore: prefer_const_literals_to_create_immutables
-                        children: [
-                          // ignore: prefer_const_constructors
-                          // Text(
-                          //   '100 Credit',
-                          //   style: TextStyle(fontSize: 20),
-                          // ),
-                          // // ignore: prefer_const_constructors
-                          // SizedBox(
-                          //   height: 5,
-                          // ),
-                          // Text('rupee 100 one-time')
-                        ],
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          // ignore: prefer_const_literals_to_create_immutables
+                          children: [
+                            // ignore: prefer_const_constructors
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5, left: 5),
+                              // ignore: prefer_const_constructors
+                              child: Text(
+                                '100 Credit',
+                                // ignore: prefer_const_constructors
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            // ignore: prefer_const_constructors
+                            SizedBox(
+                              height: 5,
+                            ),
+                            // ignore: prefer_const_constructors
+                            Padding(
+                              padding: const EdgeInsets.only(left: 6, top: 0),
+                              child: const Text('Rs 100 one-time'),
+                            )
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 25, top: 5),
+                        child: Column(
+                          children: [
+                            Row(
+                              // ignore: prefer_const_literals_to_create_immutables
+                              children: [
+                                const Text('credit'),
+                                // ignore: prefer_const_constructors
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                // ignore: prefer_const_constructors
+                                Text(
+                                  '5',
+                                  // ignore: prefer_const_constructors
+                                  style: TextStyle(
+                                      fontSize: 35,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.blue),
+                                ),
+                                const Text(' /scratch')
+                              ],
+                            )
+                          ],
+                        ),
                       )
                     ],
                   ),
                 ),
                 // ignore: prefer_const_constructors
                 SizedBox(
-                  height: 10,
+                  height: 30,
                 ),
                 Container(
                   height: 60,
@@ -129,27 +170,68 @@ showModasheet(BuildContext context) {
                             //   rd = !rd;
                             // });
                           })),
-                      Column(
-                        // ignore: prefer_const_literals_to_create_immutables
-                        children: [
-                          // ignore: prefer_const_constructors
-                          Text(
-                            '100 Credit',
-                            style: TextStyle(fontSize: 20),
-                          ),
-                          // ignore: prefer_const_constructors
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Text('rupee 100 one-time')
-                        ],
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          // ignore: prefer_const_literals_to_create_immutables
+                          children: [
+                            // ignore: prefer_const_constructors
+                            Padding(
+                              padding: const EdgeInsets.only(top: 3, left: 5),
+                              // ignore: prefer_const_constructors
+                              child: Text(
+                                '150 Credit',
+                                // ignore: prefer_const_constructors
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            // ignore: prefer_const_constructors
+                            SizedBox(
+                              height: 5,
+                            ),
+                            // ignore: prefer_const_constructors
+                            Padding(
+                              padding: const EdgeInsets.only(left: 6),
+                              child: const Text('Rs 150 one-time'),
+                            )
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 25, top: 5),
+                        child: Column(
+                          children: [
+                            Row(
+                              // ignore: prefer_const_literals_to_create_immutables
+                              children: [
+                                const Text('credit'),
+                                // ignore: prefer_const_constructors
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                // ignore: prefer_const_constructors
+                                Text(
+                                  '5',
+                                  // ignore: prefer_const_constructors
+                                  style: TextStyle(
+                                      fontSize: 35,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.blue),
+                                ),
+                                const Text(' /scratch')
+                              ],
+                            )
+                          ],
+                        ),
                       )
                     ],
                   ),
                 ),
                 // ignore: prefer_const_constructors
                 SizedBox(
-                  height: 70,
+                  height: 50,
                 ),
 
                 SizedBox(
