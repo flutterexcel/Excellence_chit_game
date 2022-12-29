@@ -21,17 +21,20 @@ class _ScratchPageState extends State<ScratchPage> {
     '10',
     '5.0',
     'Better luck next time',
-    '15',
-    '20',
+    '7',
     'Better luck next time',
     'Better luck next time',
     'Better luck next time',
-    '5'
+    'Better luck next time',
+    '3'
   ];
+
   @override
   void initState() {
     super.initState();
     // getUpdate();
+    winprice.shuffle();
+
     getCredit();
   }
 
@@ -61,7 +64,7 @@ class _ScratchPageState extends State<ScratchPage> {
 
   @override
   Widget build(BuildContext context) {
-    winprice.shuffle();
+    // winprice.shuffle();
     print("ihjugv$winprice");
     return MaterialApp(
       debugShowCheckedModeBanner: false,
