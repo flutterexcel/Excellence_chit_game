@@ -1,7 +1,6 @@
-// ignore_for_file: prefer_const_constructors, use_full_hex_values_for_flutter_colors
+// ignore_for_file: prefer_const_constructors, use_full_hex_values_for_flutter_colors, duplicate_ignore
 
 import 'package:chit_game_android/auth/result.dart';
-import 'package:chit_game_android/screens/profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -15,8 +14,12 @@ import '../controller/login_controller.dart';
 class GoogleAuth extends StatelessWidget {
   GoogleAuth({super.key});
   final controller = Get.put(LoginController());
+
   @override
   Widget build(BuildContext context) {
+    WidgetsFlutterBinding.ensureInitialized();
+
+    // ignore: duplicate_ignore
     return Scaffold(
       appBar: AppBar(
         title: const Center(child: Text('Welcome to Chit Game')),
@@ -28,10 +31,7 @@ class GoogleAuth extends StatelessWidget {
         decoration: BoxDecoration(
             gradient: LinearGradient(
                 // transform: GradientRotation(15.0),
-<<<<<<< HEAD
                 // ignore: prefer_const_literals_to_create_immutables
-=======
->>>>>>> 3497621ca99aa036f4fe5fee42c09bda5596c21a
                 colors: <Color>[
               Color(0xffC33764),
               Color(0xffC1D2671),
@@ -108,11 +108,7 @@ class GoogleAuth extends StatelessWidget {
               width: 32,
             ),
             label: const Text('Sign in with Google'),
-<<<<<<< HEAD
-            backgroundColor: Color.fromARGB(255, 232, 231, 230),
-=======
             backgroundColor: Colors.white,
->>>>>>> 3497621ca99aa036f4fe5fee42c09bda5596c21a
             foregroundColor: Colors.black,
           ),
           const SizedBox(
