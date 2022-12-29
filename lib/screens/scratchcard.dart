@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scratcher/widgets.dart';
-
 import '../controller/login_controller.dart';
 import 'bottomsheet.dart';
 
@@ -67,46 +66,67 @@ class _ScratchPageState extends State<ScratchPage> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            onPressed: (() {
-              Navigator.pop(context);
-            }),
-            icon: Icon(Icons.arrow_back_ios),
-            iconSize: 20,
-          ),
-          // ignore: prefer_const_constructors
-          title: Padding(
-            padding: const EdgeInsets.only(right: 40),
-            child: const Center(child: Text("Scratch and Win")),
+          appBar: AppBar(
+            title: Text(" Scracth and win"),
+            backgroundColor: Colors.redAccent,
+            actions: [
+              PopupMenuButton(
+                  // add icon, by default "3 dot" icon
+                  // icon: Icon(Icons.book)
+                  itemBuilder: (context) {
+                return [
+                  // ignore: prefer_const_constructors
+                  PopupMenuItem<int>(
+                    value: 1,
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.logout,
+                          color: Colors.black,
+                        ),
+                        const Text("Logout"),
+                      ],
+                    ),
+                  ),
+                ];
+              }, onSelected: (value) {
+                if (value == 1) {
+                  widget.controller.logout(context);
+                }
+              }),
+            ],
+
+            // ignore: prefer_const_constructors
+            // title: Padding(
+            //   padding: const EdgeInsets.only(right: 40),
+            //   child: const Center(child: Text("Scratch and Win")),
           ),
           backgroundColor: Colors.deepPurple,
-        ),
-        body: Container(
-            // ignore: prefer_const_constructors
-            decoration: BoxDecoration(
-                // ignore: prefer_const_constructors
-                gradient: LinearGradient(
-                    // transform: GradientRotation(15.0),
-                    colors: <Color>[
+          body: Container(
+
+              // ignore: prefer_const_constructors
+              decoration: BoxDecoration(
                   // ignore: prefer_const_constructors
-                  Color(0xffC33764),
-                  Color(0xffC1D2671),
-                ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
-            // height: 70,
-            // width: 70,
-            padding: const EdgeInsets.only(top: 80, right: 20, left: 20),
-            child: GridView.builder(
-              itemCount: 9,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  crossAxisSpacing: 15.0,
-                  mainAxisSpacing: 15.0),
-              itemBuilder: (BuildContext context, int index) {
-                return showScratchCard(context, index);
-              },
-            )),
-      ),
+                  gradient: LinearGradient(
+                      // transform: GradientRotation(15.0),
+                      colors: <Color>[
+                    // ignore: prefer_const_constructors
+                    Color(0xffC33764),
+                    Color(0xffC1D2671),
+                  ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+              // height: 70,
+              // width: 70,
+              padding: const EdgeInsets.only(top: 80, right: 20, left: 20),
+              child: GridView.builder(
+                itemCount: 9,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    crossAxisSpacing: 15.0,
+                    mainAxisSpacing: 15.0),
+                itemBuilder: (BuildContext context, int index) {
+                  return showScratchCard(context, index);
+                },
+              ))),
     );
   }
 

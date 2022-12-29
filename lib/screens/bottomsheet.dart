@@ -75,7 +75,14 @@ showModasheet(BuildContext context) {
                       height: 30,
                     ),
                     InkWell(
-                      onTap: (() {}),
+                      onTap: (() {
+                        setState(
+                          () {
+                            valuesecond = false;
+                            valuefirst = !valuefirst;
+                          },
+                        );
+                      }),
                       child: Container(
                         height: 60,
                         width: 320,
@@ -89,8 +96,8 @@ showModasheet(BuildContext context) {
                         child: Row(
                           children: [
                             Checkbox(
-                              checkColor: Colors.greenAccent,
-                              activeColor: Colors.red,
+                              checkColor: Colors.white,
+                              activeColor: Colors.blue,
                               value: valuefirst,
                               onChanged: (Value) {
                                 // valuesecond = false;
@@ -182,99 +189,110 @@ showModasheet(BuildContext context) {
                     SizedBox(
                       height: 30,
                     ),
-                    Container(
-                      height: 60,
-                      width: 320,
-                      // ignore: prefer_const_constructors
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.blueAccent, width: 3),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(10)),
-                      ),
-                      child: Row(
-                        children: [
-                          Checkbox(
-                            checkColor: Colors.greenAccent,
-                            activeColor: Colors.red,
-                            value: valuesecond,
-                            onChanged: (Value) {
-                              print('hi');
-                              // valuefirst = false;
-                              setState(
-                                () {
-                                  valuefirst = false;
-                                  valuesecond = !valuesecond;
-                                },
-                              );
-                            },
-                          ),
-                          // Radio(
-                          //     value: false,
-                          //     groupValue: rd,
-                          //     onChanged: ((value) {
-                          //       // setState(() {
-                          //       //   rd = !rd;
-                          //       // });
-                          //     })),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              // ignore: prefer_const_literals_to_create_immutables
-                              children: [
-                                // ignore: prefer_const_constructors
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: 3, left: 5),
-                                  // ignore: prefer_const_constructors
-                                  child: Text(
-                                    '150 Credit',
-                                    // ignore: prefer_const_constructors
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                // ignore: prefer_const_constructors
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                // ignore: prefer_const_constructors
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 6),
-                                  child: const Text('Rs 150 one-time'),
-                                )
-                              ],
+                    InkWell(
+                      onTap: () {
+                        setState(
+                          () {
+                            valuefirst = false;
+                            valuesecond = !valuesecond;
+                          },
+                        );
+                      },
+                      child: Container(
+                        height: 60,
+                        width: 320,
+                        // ignore: prefer_const_constructors
+                        decoration: BoxDecoration(
+                          border:
+                              Border.all(color: Colors.blueAccent, width: 3),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10)),
+                        ),
+                        child: Row(
+                          children: [
+                            Checkbox(
+                              checkColor: Colors.white,
+                              activeColor: Colors.blue,
+                              value: valuesecond,
+                              onChanged: (Value) {
+                                print('hi');
+                                // valuefirst = false;
+                                setState(
+                                  () {
+                                    valuefirst = false;
+                                    valuesecond = !valuesecond;
+                                  },
+                                );
+                              },
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 25, top: 5),
-                            child: Column(
-                              children: [
-                                Row(
-                                  // ignore: prefer_const_literals_to_create_immutables
-                                  children: [
-                                    const Text('credit'),
+                            // Radio(
+                            //     value: false,
+                            //     groupValue: rd,
+                            //     onChanged: ((value) {
+                            //       // setState(() {
+                            //       //   rd = !rd;
+                            //       // });
+                            //     })),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                // ignore: prefer_const_literals_to_create_immutables
+                                children: [
+                                  // ignore: prefer_const_constructors
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.only(top: 3, left: 5),
                                     // ignore: prefer_const_constructors
-                                    SizedBox(
-                                      width: 5,
-                                    ),
-                                    // ignore: prefer_const_constructors
-                                    Text(
-                                      '5',
+                                    child: Text(
+                                      '150 Credit',
                                       // ignore: prefer_const_constructors
                                       style: TextStyle(
-                                          fontSize: 35,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.blue),
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
                                     ),
-                                    const Text(' /scratch')
-                                  ],
-                                )
-                              ],
+                                  ),
+                                  // ignore: prefer_const_constructors
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  // ignore: prefer_const_constructors
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 6),
+                                    child: const Text('Rs 150 one-time'),
+                                  )
+                                ],
+                              ),
                             ),
-                          )
-                        ],
+                            Padding(
+                              padding: const EdgeInsets.only(left: 25, top: 5),
+                              child: Column(
+                                children: [
+                                  Row(
+                                    // ignore: prefer_const_literals_to_create_immutables
+                                    children: [
+                                      const Text('credit'),
+                                      // ignore: prefer_const_constructors
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      // ignore: prefer_const_constructors
+                                      Text(
+                                        '5',
+                                        // ignore: prefer_const_constructors
+                                        style: TextStyle(
+                                            fontSize: 35,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.blue),
+                                      ),
+                                      const Text(' /scratch')
+                                    ],
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                     // ignore: prefer_const_constructors

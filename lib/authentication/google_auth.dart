@@ -22,6 +22,7 @@ class GoogleAuth extends StatelessWidget {
     // ignore: duplicate_ignore
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Center(child: Text('Welcome to Chit Game')),
         backgroundColor: Colors.deepPurple,
       ),

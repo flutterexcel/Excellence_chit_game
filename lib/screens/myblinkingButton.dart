@@ -24,8 +24,8 @@ class _MyBlinkingButtonState extends State<MyBlinkingButton>
         opacity: _animationController,
         child: ElevatedButton(
           onPressed: () {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => ScratchPage()));
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => ScratchPage()));
           },
           style: ElevatedButton.styleFrom(
               shape: const StadiumBorder(), backgroundColor: Colors.green),
