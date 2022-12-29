@@ -93,10 +93,15 @@ class _ProfileState extends State<Profile> {
         ),
         // ignore: prefer_const_constructors
         SizedBox(
-          height: 16,
+          height: 8,
+        ),
+
+        // ignore: prefer_const_constructors
+        SizedBox(
+          height: 8,
         ),
         ActionChip(
-          backgroundColor: Color.fromARGB(255, 153, 47, 39),
+          backgroundColor: const Color.fromARGB(255, 153, 47, 39),
           avatar: const Icon(
             Icons.logout,
             color: Colors.white,

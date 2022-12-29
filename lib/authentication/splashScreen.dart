@@ -3,7 +3,7 @@ import 'dart:async';
 //import 'package:chit_game/login_page.dart';
 import 'package:chit_game_android/authentication/google_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:chit_game_android/auth/facebook_auth.dart';
+// import 'package:chit_game_android/auth/facebook_auth.dart';
 
 // import 'login_page.dart';
 
@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 4), () {
+    Timer(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -66,21 +68,28 @@ class _ScratchPageState extends State<ScratchPage> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          // leading: IconButton(
-          //   onPressed: (() {
-          //     Navigator.pop(context);
-          //   }),
-          //   icon: Icon(Icons.arrow_back_ios),
-          //   iconSize: 20,
-          // ),
-          title: Center(child: const Text("Scratch and Win")),
+          leading: IconButton(
+            onPressed: (() {
+              Navigator.pop(context);
+            }),
+            icon: Icon(Icons.arrow_back_ios),
+            iconSize: 20,
+          ),
+          // ignore: prefer_const_constructors
+          title: Padding(
+            padding: const EdgeInsets.only(right: 40),
+            child: const Center(child: Text("Scratch and Win")),
+          ),
           backgroundColor: Colors.deepPurple,
         ),
         body: Container(
+            // ignore: prefer_const_constructors
             decoration: BoxDecoration(
+                // ignore: prefer_const_constructors
                 gradient: LinearGradient(
                     // transform: GradientRotation(15.0),
                     colors: <Color>[
+                  // ignore: prefer_const_constructors
                   Color(0xffC33764),
                   Color(0xffC1D2671),
                 ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
@@ -118,19 +127,34 @@ class _ScratchPageState extends State<ScratchPage> {
             borderRadius: BorderRadius.all(Radius.circular(20))),
         child: Scratcher(
           brushSize: 50,
-          threshold: 50,
+          threshold: 300,
           color: const Color.fromARGB(255, 89, 159, 229),
           onScratchEnd: () => getCredit(),
-          onScratchStart: cred != null
-              ? () {
-                  getUpdate();
-                }
-              : () {
-                  print('object');
-                },
-          onChange: cred != null
-              ? (value) => print("Scratch progress: $value%")
-              : (value) => print("object"),
+          onScratchStart: (() {
+            if (cred == 0) {
+              showModasheet(context);
+
+              // showDialog(
+              //     context: context,
+              //     builder: (BuildContext context) {
+              //       return AlertDialog(
+              //         title: Text("purchase"),
+              //       );
+              //     });
+            } else {
+              getUpdate();
+            }
+          }),
+
+          // onScratchStart: cred != 0
+          //     ? () {
+          //         getUpdate();
+          //       }
+          //     : () {
+          //         print('object');
+          //       },
+          onChange: (value) => print("Scratch progress: $value%"),
+          // : (value) => print("object"),
           onThreshold: () => print("Threshold reached"),
           child: SingleChildScrollView(
             child: Container(
