@@ -9,6 +9,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController extends GetxController {
   final _googleSignin = GoogleSignIn();
+  late FirebaseAuth _auth;
+  final FirebaseAuth auth = FirebaseAuth.instance;
   var googleAccount = Rx<GoogleSignInAccount?>(null);
   late String myCredit;
   late String match;
@@ -20,7 +22,6 @@ class LoginController extends GetxController {
 
   login(context) async {
     // ignore: unused_local_variable
-    final FirebaseAuth auth = FirebaseAuth.instance;
 
     // void inputData() {
     //   final User? user = auth.currentUser;
@@ -47,6 +48,7 @@ class LoginController extends GetxController {
           "id": googleAccount.value!.id,
           "photoUrl": googleAccount.value!.photoUrl,
           "Credit": 10,
+          "Winingprice": 0
         };
         await FirebaseFirestore.instance
             .collection('users')
