@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
+// import 'dart:html';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,6 +30,7 @@ class _ScratchPageState extends State<ScratchPage> {
     'Better luck next time',
     '3'
   ];
+  double _opacity = 0.0;
 
   @override
   void initState() {
@@ -70,7 +73,7 @@ class _ScratchPageState extends State<ScratchPage> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
           appBar: AppBar(
-            title: Text(" Scracth and win"),
+            title: const Text(" Scracth and win"),
             backgroundColor: Colors.redAccent,
             actions: [
               PopupMenuButton(
@@ -83,6 +86,8 @@ class _ScratchPageState extends State<ScratchPage> {
                     value: 1,
                     child: Row(
                       children: [
+                        // ignore: prefer_const_constructorsn
+                        // ignore: prefer_const_constructors
                         Icon(
                           Icons.logout,
                           color: Colors.black,
@@ -106,30 +111,73 @@ class _ScratchPageState extends State<ScratchPage> {
           ),
           backgroundColor: Colors.deepPurple,
           body: Container(
-
-              // ignore: prefer_const_constructors
-              decoration: BoxDecoration(
+            // ignore: prefer_const_constructors
+            decoration: BoxDecoration(
+                // ignore: prefer_const_constructors
+                gradient: LinearGradient(
+                    // transform: GradientRotation(15.0),
+                    colors: <Color>[
                   // ignore: prefer_const_constructors
-                  gradient: LinearGradient(
-                      // transform: GradientRotation(15.0),
-                      colors: <Color>[
+                  Color(0xffC33764),
+                  Color(0xffC1D2671),
+                ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+            // height: 70,
+            // width: 70,
+            padding: const EdgeInsets.only(top: 80, right: 20, left: 20),
+            child: Column(
+              children: [
+                GridView.builder(
+                  shrinkWrap: true,
+                  itemCount: 9,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      crossAxisSpacing: 15.0,
+                      mainAxisSpacing: 15.0),
+                  itemBuilder: (BuildContext context, int index) {
+                    return showScratchCard(context, index);
+                  },
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                // ignore: prefer_const_constructors
+                Padding(
+                  padding: const EdgeInsets.only(right: 90, top: 30),
+                  // ignore: prefer_const_constructors
+                  child: Text(
+                    'Your winning amount: ', maxLines: 1,
+
                     // ignore: prefer_const_constructors
-                    Color(0xffC33764),
-                    Color(0xffC1D2671),
-                  ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
-              // height: 70,
-              // width: 70,
-              padding: const EdgeInsets.only(top: 80, right: 20, left: 20),
-              child: GridView.builder(
-                itemCount: 9,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 15.0,
-                    mainAxisSpacing: 15.0),
-                itemBuilder: (BuildContext context, int index) {
-                  return showScratchCard(context, index);
-                },
-              ))),
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                ),
+                // ignore: prefer_const_constructors
+                SizedBox(
+                  height: 40,
+                ),
+                SizedBox(
+                  height: 50,
+                  width: 250,
+                  child: ElevatedButton(
+                      onPressed: (() {
+                        print("bgugugu");
+                        // dialougeShow(context);/
+                        showDialog(
+                            context: context,
+                            builder: (context) => dialougeShow(context));
+                      }),
+                      child: const Text(
+                        'Buy Credit From Winning Price',
+                        style: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.bold),
+                      )),
+                )
+              ],
+            ),
+          )),
     );
   }
 
@@ -139,7 +187,7 @@ class _ScratchPageState extends State<ScratchPage> {
       borderOnForeground: true,
       shadowColor: Colors.black,
       elevation: 20,
-      color: const Color.fromARGB(255, 222, 117, 152),
+      color: Color.fromARGB(255, 190, 103, 132),
       shape: RoundedRectangleBorder(
           side: const BorderSide(color: Colors.black),
           borderRadius: BorderRadius.circular(20)),
@@ -149,9 +197,15 @@ class _ScratchPageState extends State<ScratchPage> {
         decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(20))),
         child: Scratcher(
-          brushSize: 50,
-          threshold: 300,
+          brushSize: 40,
+          threshold: 25,
+
           color: const Color.fromARGB(255, 89, 159, 229),
+          onThreshold: () {
+            setState(() {
+              _opacity = 1;
+            });
+          },
           onScratchEnd: () => getCredit(),
           onScratchStart: (() {
             if (cred == 0) {
@@ -178,7 +232,7 @@ class _ScratchPageState extends State<ScratchPage> {
           //       },
           onChange: (value) => print("Scratch progress: $value%"),
           // : (value) => print("object"),
-          onThreshold: () => print("Threshold reached"),
+          // onThreshold: () => print("Threshold reached"),
           child: SingleChildScrollView(
             child: Container(
               height: 90,
