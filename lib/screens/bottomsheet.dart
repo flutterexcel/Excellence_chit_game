@@ -5,9 +5,16 @@ import 'package:chit_game_android/screens/scratchcard.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-showModasheet(BuildContext context) {
+import '../controller/razorpay.dart';
+
+showModasheet(
+  BuildContext context,
+) {
   bool valuefirst = false;
   bool valuesecond = false;
+  // final int crd;
+  num crd = 0;
+
   return showModalBottomSheet(
       isScrollControlled: true,
       backgroundColor: Colors.white,
@@ -76,6 +83,7 @@ showModasheet(BuildContext context) {
                     ),
                     InkWell(
                       onTap: (() {
+                        crd = 100;
                         setState(
                           () {
                             valuesecond = false;
@@ -191,6 +199,7 @@ showModasheet(BuildContext context) {
                     ),
                     InkWell(
                       onTap: () {
+                        crd = 150;
                         setState(
                           () {
                             valuefirst = false;
@@ -304,7 +313,11 @@ showModasheet(BuildContext context) {
                       height: 50,
                       width: 300,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => RazorPay(crd: crd)));
+                        },
                         // ignore: prefer_const_constructors, sort_child_properties_last
                         child: Center(child: Text(" Go To Payment")),
                         style: ElevatedButton.styleFrom(

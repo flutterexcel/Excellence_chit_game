@@ -17,9 +17,9 @@ class ScratchPage extends StatefulWidget {
 
 class _ScratchPageState extends State<ScratchPage> {
   late int count;
-  List<String> winprice = [
+  List<dynamic> winprice = [
     '10',
-    '5.0',
+    '5',
     'Better luck next time',
     '7',
     'Better luck next time',
@@ -36,6 +36,22 @@ class _ScratchPageState extends State<ScratchPage> {
     winprice.shuffle();
 
     getCredit();
+    getWin();
+  }
+
+  num winp = 0;
+
+  var win;
+  getWin() async {
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(widget.controller.googleAccount.value!.id)
+        .snapshots()
+        .listen((event) {
+      print("higuybh${event.data()!['Winingprice']}");
+      win = event.data()!['Winingprice'];
+      setState(() {});
+    });
   }
 
   var cred;
@@ -62,6 +78,13 @@ class _ScratchPageState extends State<ScratchPage> {
         .update({"Credit": cred - 5});
   }
 
+  getWinUpdate() async {
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(widget.controller.googleAccount.value!.id)
+        .update({"Winingprice": win + winp});
+  }
+
   @override
   Widget build(BuildContext context) {
     // winprice.shuffle();
@@ -83,7 +106,7 @@ class _ScratchPageState extends State<ScratchPage> {
                     value: 1,
                     child: Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.logout,
                           color: Colors.black,
                         ),
@@ -152,7 +175,17 @@ class _ScratchPageState extends State<ScratchPage> {
           brushSize: 50,
           threshold: 300,
           color: const Color.fromARGB(255, 89, 159, 229),
-          onScratchEnd: () => getCredit(),
+          // onScratchEnd: () => getCredit(),
+          onScratchEnd: (() {
+            getCredit();
+            if (winprice[index] != 'Better luck next time') {
+              var store = int.parse(winprice[index]);
+              winp = winp + store;
+              getWinUpdate();
+              print('tttt$winp');
+            }
+          }),
+
           onScratchStart: (() {
             if (cred == 0) {
               showModasheet(context);
