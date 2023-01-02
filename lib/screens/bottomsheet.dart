@@ -603,7 +603,14 @@ dialougeShow(BuildContext context) {
               height: 50,
               width: 300,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: (() {
+                  // print("bgugugu");
+
+                  showDialog(
+                      context: context,
+                      builder: (context) => paymentSuccessed(context));
+                }),
+
                 // ignore: prefer_const_constructors, sort_child_properties_last
                 child: Center(child: Text(" Go To Payment")),
                 style: ElevatedButton.styleFrom(
@@ -649,7 +656,7 @@ paymentSuccessed(BuildContext context) {
   return StatefulBuilder(builder: ((context, setState) {
     return AlertDialog(
         // title: Text("ugu"),
-        content: Container(
+        content: SizedBox(
       height: 300,
       child: Row(
         // ignore: prefer_const_literals_to_create_immutables, prefer_const_constructors
@@ -668,6 +675,31 @@ paymentSuccessed(BuildContext context) {
             Icons.check_box,
             size: 30,
           )
+        ],
+      ),
+    ));
+  }));
+}
+
+lowpayment(BuildContext context) {
+  return StatefulBuilder(builder: ((context, setState) {
+    return AlertDialog(
+        // title: Text("ugu"),
+        content: SizedBox(
+      height: 300,
+      child: Row(
+        // ignore: prefer_const_literals_to_create_immutables, prefer_const_constructors
+        children: [
+          // ignore: prefer_const_constructors
+          Center(
+              // ignore: prefer_const_constructors
+              child: Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: const Text(
+              ' Your winning amout is low!',
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            ),
+          )),
         ],
       ),
     ));
