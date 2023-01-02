@@ -610,13 +610,6 @@ dialougeShow(BuildContext context) {
               width: 300,
               child: ElevatedButton(
                 onPressed: () {
-<<<<<<< HEAD
-                  showDialog(
-                      context: context,
-                      builder: ((context) => paymentSuccessed(context, crd)));
-                  // ignore: avoid_print
-                  print('ttrtr$crd');
-=======
                   var pt = crd;
                   if (pt != 100 && pt != 150) {
                     showDialog(
@@ -628,7 +621,6 @@ dialougeShow(BuildContext context) {
                         builder: ((context) => paymentSuccessed(context, crd)));
                     print('ttrtr$crd');
                   }
->>>>>>> f253f66d9985b64de3ff81a2b21615f9865a2619
                 },
                 // ignore: prefer_const_constructors, sort_child_properties_last
                 child: Center(child: Text(" Go To Payment")),
@@ -751,10 +743,6 @@ lowpayment(BuildContext context) {
               child: Padding(
             padding: const EdgeInsets.only(left: 0),
             child: const Text(
-<<<<<<< HEAD
-              ' Your winning amount atleast Rs 100',
-              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-=======
               ' Your winning amout atleast Rs 100',
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             ),
@@ -782,7 +770,6 @@ option(BuildContext context) {
             child: const Text(
               'Please select one option',
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
->>>>>>> f253f66d9985b64de3ff81a2b21615f9865a2619
             ),
           )),
         ],
