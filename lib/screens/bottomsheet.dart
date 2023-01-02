@@ -316,9 +316,16 @@ showModasheet(
                       width: 300,
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: (context) => RazorPay(crd: crd)));
+                          var pr = crd;
+                          if (pr == 0) {
+                            showDialog(
+                                context: context,
+                                builder: ((context) => option(context)));
+                          } else {
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (context) => RazorPay(crd: crd)));
+                          }
                         },
                         // ignore: prefer_const_constructors, sort_child_properties_last
                         child: Center(child: Text(" Go To Payment")),
@@ -609,10 +616,17 @@ dialougeShow(BuildContext context) {
               width: 300,
               child: ElevatedButton(
                 onPressed: () {
-                  showDialog(
-                      context: context,
-                      builder: ((context) => paymentSuccessed(context, crd)));
-                  print('ttrtr$crd');
+                  var pt = crd;
+                  if (pt != 100 && pt != 150) {
+                    showDialog(
+                        context: context,
+                        builder: ((context) => option(context)));
+                  } else {
+                    showDialog(
+                        context: context,
+                        builder: ((context) => paymentSuccessed(context, crd)));
+                    print('ttrtr$crd');
+                  }
                 },
                 // ignore: prefer_const_constructors, sort_child_properties_last
                 child: Center(child: Text(" Go To Payment")),
@@ -730,6 +744,31 @@ lowpayment(BuildContext context) {
             padding: const EdgeInsets.only(left: 10),
             child: const Text(
               ' Your winning amout atleast Rs 100',
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+            ),
+          )),
+        ],
+      ),
+    ));
+  }));
+}
+
+option(BuildContext context) {
+  return StatefulBuilder(builder: ((context, setState) {
+    return AlertDialog(
+        // title: Text("ugu"),
+        content: SizedBox(
+      height: 150,
+      child: Row(
+        // ignore: prefer_const_literals_to_create_immutables, prefer_const_constructors
+        children: [
+          // ignore: prefer_const_constructors
+          Center(
+              // ignore: prefer_const_constructors
+              child: Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: const Text(
+              'Please select one option',
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             ),
           )),
