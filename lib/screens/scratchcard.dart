@@ -18,7 +18,7 @@ class ScratchPage extends StatefulWidget {
 }
 
 class _ScratchPageState extends State<ScratchPage> {
-  late int count;
+  int count = 0;
   List<dynamic> winprice = [
     '10',
     '5',
@@ -33,6 +33,7 @@ class _ScratchPageState extends State<ScratchPage> {
     'Better luck next time',
     'Better luck next time',
   ];
+  // int count=0;
   double _opacity = 0.0;
 
   @override
@@ -264,6 +265,7 @@ class _ScratchPageState extends State<ScratchPage> {
           },
           // onScratchEnd: () => getCredit() && getWinUpdate(),
           onScratchEnd: () {
+            count++;
             getCredit();
             // getWinUpdate(index);
             setState(() {});
@@ -296,7 +298,8 @@ class _ScratchPageState extends State<ScratchPage> {
           //       },
           // onChange: (value) => print("Scratch progress: $value%"),
           onChange: ((value) {
-            if (value == 80) {
+            print("gugygg$value");
+            if (value > 50) {
               getWinUpdate(index);
             }
           }),
