@@ -165,7 +165,7 @@ class _ScratchPageState extends State<ScratchPage> {
                 ),
                 // ignore: prefer_const_constructors
                 Padding(
-                  padding: const EdgeInsets.only(right: 90, top: 30),
+                  padding: const EdgeInsets.only(right: 85, top: 30),
                   // ignore: prefer_const_constructors
                   child: Text(
                     'Your winning amount: $win', maxLines: 1,
@@ -178,8 +178,21 @@ class _ScratchPageState extends State<ScratchPage> {
                   ),
                 ),
                 // ignore: prefer_const_constructors
+                Padding(
+                  padding: const EdgeInsets.only(right: 155, top: 15),
+                  child: Text(
+                    'Your credit: $cred',
+                    // ignore: prefer_const_constructors
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                ),
+
+                // ignore: prefer_const_constructors
                 SizedBox(
-                  height: 40,
+                  height: 20,
                 ),
                 SizedBox(
                   height: 50,
