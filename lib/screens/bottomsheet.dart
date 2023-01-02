@@ -729,13 +729,8 @@ lowpayment(BuildContext context) {
               child: Padding(
             padding: const EdgeInsets.only(left: 10),
             child: const Text(
-<<<<<<< HEAD
-              ' Your winning amount is low!',
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-=======
               ' Your winning amout atleast Rs 100',
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
->>>>>>> 4055303a00aa36b521f6d6cf9f11159087f4f123
             ),
           )),
         ],
