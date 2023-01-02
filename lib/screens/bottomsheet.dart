@@ -2,9 +2,11 @@ import 'package:chit_game_android/authentication/google_auth.dart';
 import 'package:chit_game_android/authentication/splashScreen.dart';
 import 'package:chit_game_android/screens/profile.dart';
 import 'package:chit_game_android/screens/scratchcard.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../controller/login_controller.dart';
 import '../controller/razorpay.dart';
 
 showModasheet(
@@ -47,27 +49,27 @@ showModasheet(
                       // ignore: prefer_const_literals_to_create_immutables
                       children: [
                         // ignore: prefer_const_constructors
-                        InkWell(
-                          onTap: () {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ScratchPage()),
-                            );
-                          },
-                          child: const Icon(
-                            Icons.arrow_back_ios,
-                            size: 18,
-                          ),
-                        ),
+                        // InkWell(
+                        //   onTap: () {
+                        //     // Navigator.pushReplacement(
+                        //     //   context,
+                        //     //   MaterialPageRoute(
+                        //     //       builder: (context) => ScratchPage()),
+                        //     // );
+                        //   },
+                        //   child: const Icon(
+                        //     Icons.arrow_back_ios,
+                        //     size: 18,
+                        //   ),
+                        // ),
                         // ignore: prefer_const_constructors
-                        Text(
-                          'Back',
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        ),
+                        // Text(
+                        //   'Back',
+                        //   style: const TextStyle(fontWeight: FontWeight.bold),
+                        // ),
                         // ignore: prefer_const_constructors
                         SizedBox(
-                          width: 30,
+                          width: 80,
                         ),
                         const Text(
                           'GET PREMIUM ',
@@ -364,6 +366,7 @@ showModasheet(
 dialougeShow(BuildContext context) {
   bool valuefirst = false;
   bool valuesecond = false;
+  num crd = 0;
   return StatefulBuilder(builder: ((context, setState) {
     print("hsjdkfkd");
     return AlertDialog(
@@ -388,27 +391,27 @@ dialougeShow(BuildContext context) {
               // ignore: prefer_const_literals_to_create_immutables
               children: [
                 // ignore: prefer_const_constructors
-                InkWell(
-                  onTap: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => ScratchPage()),
-                    );
-                  },
-                  child: const Icon(
-                    Icons.arrow_back_ios,
-                    size: 13,
-                  ),
-                ),
+                // InkWell(
+                //   onTap: () {
+                //     Navigator.pushReplacement(
+                //       context,
+                //       MaterialPageRoute(builder: (context) => ScratchPage()),
+                //     );
+                //   },
+                //   child: const Icon(
+                //     Icons.arrow_back_ios,
+                //     size: 13,
+                //   ),
+                // ),
                 // ignore: prefer_const_constructors
-                Text(
-                  'Back',
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 12),
-                ),
+                // Text(
+                //   'Back',
+                //   style: const TextStyle(
+                //       fontWeight: FontWeight.bold, fontSize: 12),
+                // ),
                 // ignore: prefer_const_constructors
                 SizedBox(
-                  width: 4,
+                  width: 25,
                 ),
                 const Text(
                   'Buy With Winning Amount',
@@ -423,14 +426,15 @@ dialougeShow(BuildContext context) {
               height: 30,
             ),
             InkWell(
-              onTap: (() {
+              onTap: () {
+                crd = 100;
                 setState(
                   () {
                     valuesecond = false;
                     valuefirst = !valuefirst;
                   },
                 );
-              }),
+              },
               child: Container(
                 height: 60,
                 width: 250,
@@ -515,6 +519,7 @@ dialougeShow(BuildContext context) {
             ),
             InkWell(
               onTap: () {
+                crd = 150;
                 setState(
                   () {
                     valuefirst = false;
@@ -603,7 +608,10 @@ dialougeShow(BuildContext context) {
               height: 50,
               width: 300,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  paymentSuccessed(context, crd);
+                  print('ttrtr$crd');
+                },
                 // ignore: prefer_const_constructors, sort_child_properties_last
                 child: Center(child: Text(" Go To Payment")),
                 style: ElevatedButton.styleFrom(
@@ -645,7 +653,37 @@ dialougeShow(BuildContext context) {
   }));
 }
 
-paymentSuccessed(BuildContext context) {
+final controller = Get.put(LoginController());
+
+var cred;
+
+getCredit() async {
+  print('yyyy$cred');
+  print('uuuu${controller.googleAccount.value!.id}');
+  FirebaseFirestore.instance
+      .collection("users")
+      .doc(controller.googleAccount.value!.id)
+      .snapshots()
+      .listen((event) {
+    print("higuybh${event.data()!['Credit']}");
+    cred = event.data()!['Credit'];
+    print('yyyy$cred');
+    // setState(() {});
+  });
+}
+
+getUpdate(crd) async {
+  print('vvvv${crd.runtimeType} cred${cred.runtimeType}');
+
+  FirebaseFirestore.instance
+      .collection("users")
+      .doc(controller.googleAccount.value!.id)
+      .update({"Credit": cred + crd});
+}
+
+paymentSuccessed(BuildContext context, crd) {
+  getCredit();
+  getUpdate(crd);
   return StatefulBuilder(builder: ((context, setState) {
     return AlertDialog(
         // title: Text("ugu"),

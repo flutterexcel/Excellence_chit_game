@@ -83,6 +83,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
+import '../screens/scratchcard.dart';
 import '../service/services.dart';
 import 'login_controller.dart';
 
@@ -193,8 +194,8 @@ class _RazorPayState extends State<RazorPay> {
                   var options = {
                     'key': 'rzp_test_JfmLbrFLcNqJuq',
                     'amount': 10,
-                    'name': 'Acme Corp.',
-                    'description': 'Fine T-Shirt',
+                    'name': 'Chit_game Corp.',
+                    'description': 'Get credit',
                     'order_id': jsonDecode(response.body)['id'],
                     'retry': {'enabled': true, 'max_count': 1},
                     'send_sms_hash': true,
@@ -261,7 +262,10 @@ class _RazorPayState extends State<RazorPay> {
     // set up the buttons
     Widget continueButton = ElevatedButton(
       child: const Text("Continue"),
-      onPressed: () {},
+      onPressed: () {
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => ScratchPage()));
+      },
     );
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(

@@ -44,7 +44,7 @@ class _ScratchPageState extends State<ScratchPage> {
 
   num winp = 0;
 
-  var win;
+  late int win;
   getWin() async {
     FirebaseFirestore.instance
         .collection("users")
@@ -81,11 +81,11 @@ class _ScratchPageState extends State<ScratchPage> {
         .update({"Credit": cred - 5});
   }
 
-  getWinUpdate() async {
+  getWinUpdate(index) async {
     FirebaseFirestore.instance
         .collection("users")
         .doc(widget.controller.googleAccount.value!.id)
-        .update({"Winingprice": win + winp});
+        .update({"Winingprice": win + int.parse(winprice[index])});
   }
 
   @override
@@ -168,7 +168,7 @@ class _ScratchPageState extends State<ScratchPage> {
                   padding: const EdgeInsets.only(right: 90, top: 30),
                   // ignore: prefer_const_constructors
                   child: Text(
-                    'Your winning amount: ', maxLines: 1,
+                    'Your winning amount: $win', maxLines: 1,
 
                     // ignore: prefer_const_constructors
                     style: TextStyle(
@@ -229,7 +229,13 @@ class _ScratchPageState extends State<ScratchPage> {
               _opacity = 1;
             });
           },
-          onScratchEnd: () => getCredit(),
+          // onScratchEnd: () => getCredit() && getWinUpdate(),
+          onScratchEnd: () {
+            getCredit();
+            setState(() {
+              getWinUpdate(index);
+            });
+          },
           onScratchStart: (() {
             if (cred == 0) {
               showModasheet(context);
