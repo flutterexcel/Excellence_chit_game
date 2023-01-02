@@ -186,11 +186,19 @@ class _ScratchPageState extends State<ScratchPage> {
                   width: 250,
                   child: ElevatedButton(
                       onPressed: (() {
+                        getWin();
                         print("bgugugu");
                         // dialougeShow(context);/
-                        showDialog(
-                            context: context,
-                            builder: (context) => dialougeShow(context));
+                        var rt = win;
+                        if (rt <= 100) {
+                          showDialog(
+                              context: context,
+                              builder: ((context) => lowpayment(context)));
+                        } else {
+                          showDialog(
+                              context: context,
+                              builder: (context) => dialougeShow(context));
+                        }
                       }),
                       child: const Text(
                         'Buy Credit From Winning Price',
@@ -220,7 +228,7 @@ class _ScratchPageState extends State<ScratchPage> {
         decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(20))),
         child: Scratcher(
-          brushSize: 40,
+          brushSize: 80,
           threshold: 25,
           accuracy: ScratchAccuracy.low,
 
@@ -233,10 +241,12 @@ class _ScratchPageState extends State<ScratchPage> {
           // onScratchEnd: () => getCredit() && getWinUpdate(),
           onScratchEnd: () {
             getCredit();
-            setState(() {
-              getWinUpdate(index);
-            });
+            // getWinUpdate(index);
+            setState(() {});
           },
+          // onScratchUpdate: () {
+          //   getWinUpdate(index);
+          // },
           onScratchStart: (() {
             if (cred == 0) {
               showModasheet(context);
@@ -260,7 +270,12 @@ class _ScratchPageState extends State<ScratchPage> {
           //     : () {
           //         print('object');
           //       },
-          onChange: (value) => print("Scratch progress: $value%"),
+          // onChange: (value) => print("Scratch progress: $value%"),
+          onChange: ((value) {
+            if (value == 80) {
+              getWinUpdate(index);
+            }
+          }),
           // : (value) => print("object"),
           // onThreshold: () => print("Threshold reached"),
           child: SingleChildScrollView(

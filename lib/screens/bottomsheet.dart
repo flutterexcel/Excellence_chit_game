@@ -727,10 +727,10 @@ lowpayment(BuildContext context) {
           Center(
               // ignore: prefer_const_constructors
               child: Padding(
-            padding: const EdgeInsets.only(left: 20),
+            padding: const EdgeInsets.only(left: 10),
             child: const Text(
-              ' Your winning amout is low!',
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              ' Your winning amout atleast Rs 100',
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             ),
           )),
         ],
