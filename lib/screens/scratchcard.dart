@@ -222,6 +222,7 @@ class _ScratchPageState extends State<ScratchPage> {
         child: Scratcher(
           brushSize: 40,
           threshold: 25,
+          accuracy: ScratchAccuracy.low,
 
           color: const Color.fromARGB(255, 89, 159, 229),
           onThreshold: () {
