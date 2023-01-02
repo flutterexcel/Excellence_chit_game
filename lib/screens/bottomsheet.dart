@@ -1,7 +1,5 @@
-import 'package:chit_game_android/authentication/google_auth.dart';
-import 'package:chit_game_android/authentication/splashScreen.dart';
-import 'package:chit_game_android/screens/profile.dart';
-import 'package:chit_game_android/screens/scratchcard.dart';
+// ignore_for_file: avoid_types_as_parameter_names, duplicate_ignore, non_constant_identifier_names
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,6 +28,7 @@ showModasheet(
           return Wrap(children: [
             Padding(
               padding: const EdgeInsets.all(15.0),
+              // ignore: sized_box_for_whitespace
               child: Container(
                 // decoration:
                 //     // ignore: prefer_const_constructors
@@ -111,6 +110,7 @@ showModasheet(
                               value: valuefirst,
                               onChanged: (Value) {
                                 // valuesecond = false;
+                                // ignore: avoid_print
                                 print('hi');
                                 setState(
                                   () {
@@ -225,7 +225,9 @@ showModasheet(
                               checkColor: Colors.white,
                               activeColor: Colors.blue,
                               value: valuesecond,
+                              // ignore: avoid_types_as_parameter_names, non_constant_identifier_names
                               onChanged: (Value) {
+                                // ignore: avoid_print
                                 print('hi');
                                 // valuefirst = false;
                                 setState(
@@ -368,9 +370,11 @@ dialougeShow(BuildContext context) {
   bool valuesecond = false;
   num crd = 0;
   return StatefulBuilder(builder: ((context, setState) {
+    // ignore: avoid_print
     print("hsjdkfkd");
     return AlertDialog(
       // title: Text("ugu"),
+      // ignore: sized_box_for_whitespace
       content: Container(
         width: 600,
         // decoration:
@@ -445,13 +449,15 @@ dialougeShow(BuildContext context) {
                 ),
                 child: Row(
                   children: [
+                    // ignore: duplicate_ignore
                     Checkbox(
                       checkColor: Colors.white,
                       activeColor: Colors.blue,
                       value: valuefirst,
+                      // ignore: avoid_types_as_parameter_names, non_constant_identifier_names
                       onChanged: (Value) {
                         // valuesecond = false;
-                        print('hi');
+
                         setState(
                           () {
                             valuesecond = false;
@@ -503,12 +509,6 @@ dialougeShow(BuildContext context) {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 0, top: 5),
-                      child: Column(
-                        children: [],
-                      ),
-                    )
                   ],
                 ),
               ),
@@ -541,8 +541,8 @@ dialougeShow(BuildContext context) {
                       checkColor: Colors.white,
                       activeColor: Colors.blue,
                       value: valuesecond,
+                      // ignore: non_constant_identifier_names
                       onChanged: (Value) {
-                        print('hi');
                         // valuefirst = false;
                         setState(
                           () {
@@ -589,12 +589,6 @@ dialougeShow(BuildContext context) {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 0, top: 5),
-                      child: Column(
-                        children: [],
-                      ),
-                    )
                   ],
                 ),
               ),
@@ -612,6 +606,7 @@ dialougeShow(BuildContext context) {
                   showDialog(
                       context: context,
                       builder: ((context) => paymentSuccessed(context, crd)));
+                  // ignore: avoid_print
                   print('ttrtr$crd');
                 },
                 // ignore: prefer_const_constructors, sort_child_properties_last
@@ -657,24 +652,30 @@ dialougeShow(BuildContext context) {
 
 final controller = Get.put(LoginController());
 
+// ignore: prefer_typing_uninitialized_variables
 var cred;
 
 getCredit() async {
+  // ignore: avoid_print
   print('yyyy$cred');
+  // ignore: avoid_print
   print('uuuu${controller.googleAccount.value!.id}');
   FirebaseFirestore.instance
       .collection("users")
       .doc(controller.googleAccount.value!.id)
       .snapshots()
       .listen((event) {
+    // ignore: avoid_print
     print("higuybh${event.data()!['Credit']}");
     cred = event.data()!['Credit'];
+    // ignore: avoid_print
     print('yyyy$cred');
     // setState(() {});
   });
 }
 
 getUpdate(crd) async {
+  // ignore: avoid_print
   print('vvvv${crd.runtimeType} cred${cred.runtimeType}');
 
   FirebaseFirestore.instance
@@ -727,15 +728,10 @@ lowpayment(BuildContext context) {
           Center(
               // ignore: prefer_const_constructors
               child: Padding(
-            padding: const EdgeInsets.only(left: 10),
+            padding: const EdgeInsets.only(left: 0),
             child: const Text(
-<<<<<<< HEAD
-              ' Your winning amount is low!',
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-=======
-              ' Your winning amout atleast Rs 100',
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
->>>>>>> 4055303a00aa36b521f6d6cf9f11159087f4f123
+              ' Your winning amount atleast Rs 100',
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
             ),
           )),
         ],

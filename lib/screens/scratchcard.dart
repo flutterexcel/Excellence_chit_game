@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_literals_to_create_immutables, unused_field, use_full_hex_values_for_flutter_colors
 
 // import 'dart:html';
 
@@ -28,7 +28,10 @@ class _ScratchPageState extends State<ScratchPage> {
     'Better luck next time',
     'Better luck next time',
     'Better luck next time',
-    '3'
+    '3',
+    'Better luck next time',
+    'Better luck next time',
+    'Better luck next time',
   ];
   double _opacity = 0.0;
 
@@ -51,24 +54,30 @@ class _ScratchPageState extends State<ScratchPage> {
         .doc(widget.controller.googleAccount.value!.id)
         .snapshots()
         .listen((event) {
+      // ignore: avoid_print
       print("higuybh${event.data()!['Winingprice']}");
       win = event.data()!['Winingprice'];
       setState(() {});
     });
   }
 
+  // ignore: prefer_typing_uninitialized_variables
   var cred;
 
   getCredit() async {
+    // ignore: avoid_print
     print('yyyy$cred');
+    // ignore: avoid_print
     print('uuuu${widget.controller.googleAccount.value!.id}');
     FirebaseFirestore.instance
         .collection("users")
         .doc(widget.controller.googleAccount.value!.id)
         .snapshots()
         .listen((event) {
+      // ignore: avoid_print
       print("higuybh${event.data()!['Credit']}");
       cred = event.data()!['Credit'];
+      // ignore: avoid_print
       print('yyyy$cred');
       setState(() {});
     });
@@ -91,13 +100,14 @@ class _ScratchPageState extends State<ScratchPage> {
   @override
   Widget build(BuildContext context) {
     // winprice.shuffle();
+    // ignore: avoid_print
     print("ihjugv$winprice");
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
           appBar: AppBar(
             title: const Text(" Scracth and win"),
-            backgroundColor: Colors.redAccent,
+            backgroundColor: Colors.deepPurple,
             actions: [
               PopupMenuButton(
                   // add icon, by default "3 dot" icon
@@ -142,30 +152,30 @@ class _ScratchPageState extends State<ScratchPage> {
                     colors: <Color>[
                   // ignore: prefer_const_constructors
                   Color(0xffC33764),
-                  Color(0xffC1D2671),
+                  const Color(0xffC1D2671),
                 ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
             // height: 70,
             // width: 70,
-            padding: const EdgeInsets.only(top: 80, right: 20, left: 20),
+            padding: const EdgeInsets.only(top: 35, right: 20, left: 20),
             child: Column(
               children: [
                 GridView.builder(
                   shrinkWrap: true,
-                  itemCount: 9,
+                  itemCount: 12,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3,
-                      crossAxisSpacing: 15.0,
-                      mainAxisSpacing: 15.0),
+                      crossAxisSpacing: 10.0,
+                      mainAxisSpacing: 10.0),
                   itemBuilder: (BuildContext context, int index) {
                     return showScratchCard(context, index);
                   },
                 ),
                 const SizedBox(
-                  height: 15,
+                  height: 5,
                 ),
                 // ignore: prefer_const_constructors
                 Padding(
-                  padding: const EdgeInsets.only(right: 85, top: 30),
+                  padding: const EdgeInsets.only(right: 85, top: 10),
                   // ignore: prefer_const_constructors
                   child: Text(
                     'Your winning amount: $win', maxLines: 1,
@@ -200,6 +210,7 @@ class _ScratchPageState extends State<ScratchPage> {
                   child: ElevatedButton(
                       onPressed: (() {
                         getWin();
+                        // ignore: avoid_print
                         print("bgugugu");
                         // dialougeShow(context);/
                         var rt = win;
@@ -231,7 +242,7 @@ class _ScratchPageState extends State<ScratchPage> {
       borderOnForeground: true,
       shadowColor: Colors.black,
       elevation: 20,
-      color: Color.fromARGB(255, 190, 103, 132),
+      color: const Color.fromARGB(255, 190, 103, 132),
       shape: RoundedRectangleBorder(
           side: const BorderSide(color: Colors.black),
           borderRadius: BorderRadius.circular(20)),
@@ -292,6 +303,7 @@ class _ScratchPageState extends State<ScratchPage> {
           // : (value) => print("object"),
           // onThreshold: () => print("Threshold reached"),
           child: SingleChildScrollView(
+            // ignore: sized_box_for_whitespace
             child: Container(
               height: 90,
               width: 90,

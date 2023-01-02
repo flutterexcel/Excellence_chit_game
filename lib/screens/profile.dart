@@ -1,3 +1,7 @@
+// ignore: unused_import
+// ignore_for_file: unused_field, prefer_typing_uninitialized_variables, use_full_hex_values_for_flutter_colors, sized_box_for_whitespace
+
+// ignore: unused_import
 import 'package:chit_game_android/authentication/google_auth.dart';
 import 'package:chit_game_android/controller/login_controller.dart';
 import 'package:chit_game_android/screens/MyBlinkingButton.dart';
@@ -19,6 +23,7 @@ class _ProfileState extends State<Profile> {
 
   @override
   void initState() {
+    // ignore: todo
     // TODO: implement initState
     super.initState();
     getCredit();
@@ -31,6 +36,7 @@ class _ProfileState extends State<Profile> {
         .doc(widget.controller.googleAccount.value!.id)
         .snapshots()
         .listen((event) {
+      // ignore: avoid_print
       print("higuybh${event.data()!['Credit']}");
       cred = event.data()!['Credit'];
       setState(() {});
@@ -128,6 +134,7 @@ class _ProfileState extends State<Profile> {
             children: [
               Center(
                   child: Text('Your credit : $cred',
+                      // ignore: prefer_const_constructors
                       style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,

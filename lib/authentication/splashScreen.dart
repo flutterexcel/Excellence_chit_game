@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 // import 'login_page.dart';
 
 class SplashScreen extends StatefulWidget {
+  // ignore: use_key_in_widget_constructors
   const SplashScreen({key});
 
   @override
@@ -32,12 +33,17 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: Container(
         // color: Colors.blue,
+        // ignore: prefer_const_constructors
         decoration: BoxDecoration(
+            // ignore: prefer_const_constructors
             gradient: LinearGradient(
                 // transform: GradientRotation(15.0),
+                // ignore: prefer_const_literals_to_create_immutables
                 colors: <Color>[
+              // ignore: prefer_const_constructors
               Color(0xffC33764),
-              Color(0xffC1D2671),
+              // ignore: use_full_hex_values_for_flutter_colors
+              const Color(0xffC1D2671),
             ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
 
         // ignore: prefer_const_constructors

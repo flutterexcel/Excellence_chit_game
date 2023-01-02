@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class Result extends StatelessWidget {
   Result(this.userData, {super.key});
   Map<String, dynamic> userData;

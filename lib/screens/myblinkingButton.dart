@@ -1,8 +1,16 @@
+// ignore: duplicate_ignore
+// ignore: duplicate_ignore
+// ignore: file_names
+// ignore: file_names
+// ignore_for_file: file_names, duplicate_ignore
+
 import 'package:chit_game_android/screens/scratchcard.dart';
 import 'package:flutter/material.dart';
 
+// ignore: use_key_in_widget_constructors
 class MyBlinkingButton extends StatefulWidget {
   @override
+  // ignore: library_private_types_in_public_api
   _MyBlinkingButtonState createState() => _MyBlinkingButtonState();
 }
 

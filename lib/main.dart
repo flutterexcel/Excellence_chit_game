@@ -31,6 +31,7 @@ import 'authentication/splashScreen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  // ignore: unused_local_variable
   CollectionReference db = FirebaseFirestore.instance.collection("users");
 
   runApp(const MyApp());

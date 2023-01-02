@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController extends GetxController {
   final _googleSignin = GoogleSignIn();
+  // ignore: unused_field
   late FirebaseAuth _auth;
   final FirebaseAuth auth = FirebaseAuth.instance;
   var googleAccount = Rx<GoogleSignInAccount?>(null);
@@ -29,9 +30,8 @@ class LoginController extends GetxController {
     //   // here you write the codes to input the data into firestore
     // }
 
-    print("errrr");
-
     googleAccount.value = await _googleSignin.signIn();
+    // ignore: avoid_print
     print("object${googleAccount.value}");
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
