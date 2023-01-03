@@ -619,6 +619,7 @@ dialougeShow(BuildContext context) {
                     showDialog(
                         context: context,
                         builder: ((context) => paymentSuccessed(context, crd)));
+                    // ignore: avoid_print
                     print('ttrtr$crd');
                   }
                 },

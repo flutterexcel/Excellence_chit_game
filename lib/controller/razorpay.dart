@@ -70,6 +70,8 @@
 //     // Do something when payment fails
 //   }
 
+// ignore_for_file: unused_import
+
 //   void _handleExternalWallet(ExternalWalletResponse response) {
 //     // Do something when an external wallet is selected
 //   }

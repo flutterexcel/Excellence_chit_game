@@ -298,6 +298,7 @@ class _ScratchPageState extends State<ScratchPage> {
           //       },
           // onChange: (value) => print("Scratch progress: $value%"),
           onChange: ((value) {
+            // ignore: avoid_print
             print("gugygg$value");
             if (value > 50) {
               getWinUpdate(index);
