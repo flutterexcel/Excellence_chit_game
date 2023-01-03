@@ -267,7 +267,7 @@ class _ScratchPageState extends State<ScratchPage> {
           onScratchEnd: () {
             count++;
             getCredit();
-            // getWinUpdate(index);
+            getWinUpdate(index);
             setState(() {});
           },
           // onScratchUpdate: () {
@@ -297,12 +297,12 @@ class _ScratchPageState extends State<ScratchPage> {
           //         print('object');
           //       },
           // onChange: (value) => print("Scratch progress: $value%"),
-          onChange: ((value) {
-            print("gugygg$value");
-            if (value > 50) {
-              getWinUpdate(index);
-            }
-          }),
+          // onChange: ((value) {
+          //   print("gugygg$value");
+          //   if (value > 50) {
+          //     getWinUpdate(index);
+          //   }
+          // }),
           // : (value) => print("object"),
           // onThreshold: () => print("Threshold reached"),
           child: SingleChildScrollView(
