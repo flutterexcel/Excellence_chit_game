@@ -47,21 +47,20 @@ class _ScratchPageState extends State<ScratchPage> {
     false,
     false,
     false,
-    false
+    false,
   ];
   @override
   void initState() {
     super.initState();
     // getUpdate();
     winprice.shuffle();
-
     getCredit();
     getWin();
   }
 
   num winp = 0;
 
-  late int win;
+  int win = 0;
   getWin() async {
     FirebaseFirestore.instance
         .collection("users")
@@ -110,6 +109,13 @@ class _ScratchPageState extends State<ScratchPage> {
         .doc(widget.controller.googleAccount.value!.id)
         .update({"Winingprice": win + int.parse(winprice[index])});
   }
+
+  // getWinPriceUpdate(index) async {
+  //   FirebaseFirestore.instance
+  //       .collection("users")
+  //       .doc(widget.controller.googleAccount.value!.id)
+  //       .update({"Winingprice": win + int.parse(winprice[index])});
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -228,7 +234,7 @@ class _ScratchPageState extends State<ScratchPage> {
                         print("bgugugu");
                         // dialougeShow(context);/
                         var rt = win;
-                        if (rt <= 100) {
+                        if (rt <= 150) {
                           showDialog(
                               context: context,
                               builder: ((context) => lowpayment(context)));
@@ -280,11 +286,28 @@ class _ScratchPageState extends State<ScratchPage> {
           onScratchEnd: () {
             count++;
             if (isfinished[index] == true) {
+              print('t');
             } else {
+              print('yy');
               getCredit();
-              getUpdate();
+              if (cred > 0) {
+                getUpdate();
+              }
+
               getWinUpdate(index);
-              isfinished[index] = !isfinished[index];
+              isfinished[index] = true;
+              print('oo$isfinished');
+              var ct = 0;
+              for (int i = 0; i < isfinished.length; i++) {
+                if (isfinished[i]) {
+                  ct++;
+                  // break;
+                }
+              }
+              if (ct == 12) {
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => ScratchPage()));
+              }
             }
             // getCredit();
             // getWinUpdate(index);
@@ -323,7 +346,7 @@ class _ScratchPageState extends State<ScratchPage> {
                     padding: EdgeInsets.only(top: 25, left: 4),
                     child: Center(
                       child: Text(
-                        "You won",
+                        'You won ',
                         style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 15,
