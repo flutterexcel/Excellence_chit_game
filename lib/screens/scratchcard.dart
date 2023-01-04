@@ -244,7 +244,7 @@ class _ScratchPageState extends State<ScratchPage> {
                         print("bgugugu");
                         // dialougeShow(context);/
                         var rt = win;
-                        if (rt <= 10) {
+                        if (rt <= 150) {
                           showDialog(
                               context: context,
                               builder: ((context) => lowpayment(context)));
@@ -298,14 +298,20 @@ class _ScratchPageState extends State<ScratchPage> {
             count++;
             if (isfinished[index] == true) {
               print('t');
+              // if (winprice[index] != 'Better luck next time') {
+              //   getWinUpdate(index);
+              // }
             } else {
               print('yy');
               getCredit();
               if (cred > 0) {
                 getUpdate();
               }
-              getWinUpdate(index);
+              // getWinUpdate(index);
               isfinished[index] = true;
+              if (isfinished[index] == true && cred != 0) {
+                getWinUpdate(index);
+              }
               print('oo$isfinished');
               var ct = 0;
               for (int i = 0; i < isfinished.length; i++) {
