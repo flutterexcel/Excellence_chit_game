@@ -126,8 +126,8 @@ class _ScratchPageState extends State<ScratchPage> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
           appBar: AppBar(
-            title: const Text(" Scracth and win"),
-            backgroundColor: Colors.deepPurple,
+            title: const Center(child: Text("Scracth and win")),
+            backgroundColor: Colors.pink,
             actions: [
               PopupMenuButton(
                   // add icon, by default "3 dot" icon
@@ -167,13 +167,23 @@ class _ScratchPageState extends State<ScratchPage> {
             // ignore: prefer_const_constructors
             decoration: BoxDecoration(
                 // ignore: prefer_const_constructors
-                gradient: LinearGradient(
-                    // transform: GradientRotation(15.0),
-                    colors: <Color>[
-                  // ignore: prefer_const_constructors
-                  Color(0xffC33764),
-                  const Color(0xffC1D2671),
-                ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+                image: DecorationImage(
+              fit: BoxFit.cover,
+              // ignore: prefer_const_constructors
+              image: AssetImage(
+                'assets/images/Blue Wallpaper.png',
+              ),
+            )
+                // ignore: prefer_const_constructors
+                // gradient: LinearGradient(
+                //     // transform: GradientRotation(15.0),
+                //     colors: <Color>[
+                //   // ignore: prefer_const_constructors
+                //   Color(0xffC33764),
+                //   const Color(0xffC1D2671),
+                // ], begin: Alignment.topCenter, end: Alignment.bottomCenter)
+
+                ),
             // height: 70,
             // width: 70,
             padding: const EdgeInsets.only(top: 35, right: 20, left: 20),
@@ -293,7 +303,6 @@ class _ScratchPageState extends State<ScratchPage> {
               if (cred > 0) {
                 getUpdate();
               }
-
               getWinUpdate(index);
               isfinished[index] = true;
               print('oo$isfinished');
@@ -342,23 +351,50 @@ class _ScratchPageState extends State<ScratchPage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 // crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(top: 25, left: 4),
-                    child: Center(
-                      child: Text(
-                        'You won ',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 15,
-                            letterSpacing: 1,
-                            color: Colors.black),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Center(child: Text(winprice[index])),
+                  // for (int i = 0; i < winprice.length; i++)
+                  (winprice[index] != 'Better luck next time')
+                      ? Padding(
+                          padding:
+                              const EdgeInsets.only(top: 25, left: 4, right: 4),
+                          child: Center(
+                            child: Text(
+                              "You won    Rs ${winprice[index]}",
+                              textAlign: TextAlign.center,
+                              maxLines: 2,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                // letterSpacing: 1,
+                                color: Color.fromARGB(255, 52, 89, 9),
+                              ),
+                            ),
+                          ),
+                        )
+                      : Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            // ignore: prefer_const_constructors
+                            Padding(
+                              padding: const EdgeInsets.only(top: 27),
+                              // ignore: prefer_const_constructors
+                              child: Text(
+                                'Better luck next time',
+                                textAlign: TextAlign.center,
+                                maxLines: 2,
+                                // ignore: prefer_const_constructors
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 239, 212, 131),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16),
+                              ),
+                            ),
+                          ],
+                        ),
+                  // const SizedBox(
+                  //   height: 5,
+                  // ),
+                  // Center(child: Text(winprice[index])),
                 ],
               ),
             ),

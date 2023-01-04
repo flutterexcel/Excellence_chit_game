@@ -20,21 +20,26 @@ class GoogleAuth extends StatelessWidget {
     // ignore: duplicate_ignore
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: const Center(child: Text('Welcome to Chit Game')),
-        backgroundColor: Colors.deepPurple,
-      ),
+          automaticallyImplyLeading: false,
+          title: const Center(child: Text('Welcome to Chit Game')),
+          backgroundColor: Colors.pink),
       // ignore: prefer_const_constructors
       // body: Profile(),
       body: Container(
         decoration: BoxDecoration(
-            gradient: LinearGradient(
-                // transform: GradientRotation(15.0),
-                // ignore: prefer_const_literals_to_create_immutables
-                colors: <Color>[
-              Color(0xffC33764),
-              Color(0xffC1D2671),
-            ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+            image: DecorationImage(
+          fit: BoxFit.cover,
+          image: AssetImage(
+            'assets/images/Blue Wallpaper.png',
+          ),
+        )),
+        // gradient: LinearGradient(
+        //     // transform: GradientRotation(15.0) ,
+        //     // ignore: prefer_const_literals_to_create_immutables
+        //     colors: <Color>[
+        //   Color(0xffC33764),
+        //   Color(0xffC1D2671),
+        // ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
         child: Center(
           child: Obx(() {
             if (controller.googleAccount.value == null) {
@@ -89,11 +94,38 @@ class GoogleAuth extends StatelessWidget {
 
   Widget buildloginbutton(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 170),
+      padding: const EdgeInsets.only(top: 50),
       child: Column(
         children: [
-          const SizedBox(
-            height: 90,
+          Container(
+            height: 300,
+            width: 300,
+            padding: new EdgeInsets.all(10.0),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(150.0),
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage(
+                    'assets/images/logoss.png',
+                  ),
+                )),
+            //
+            // Card(
+            //   shape: RoundedRectangleBorder(
+            //     borderRadius: BorderRadius.circular(50.0),
+            //   ),
+            //   color: Color(0xff009696),
+            //   // color: Color.fromARGB(255, 217, 168, 155),
+            //   elevation: 10,
+            //   child: Column(
+            //     mainAxisSize: MainAxisSize.min,
+            //     // ignore: prefer_const_literals_to_create_immutables
+            //     children: <Widget>[],
+            //   ),
+            // ),
+          ),
+          SizedBox(
+            height: 100,
           ),
           FloatingActionButton.extended(
             onPressed: (() {

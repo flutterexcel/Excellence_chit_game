@@ -48,17 +48,24 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
       // backgroundColor: Colors.lime,
       appBar: AppBar(
-        title: const Center(child: Text('Welcome')),
-        backgroundColor: Colors.deepPurple,
-      ),
+          title: const Center(child: Text('Welcome')),
+          backgroundColor: Colors.pink),
       body: Container(
         decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                // transform: GradientRotation(15.0),
-                colors: <Color>[
-              Color(0xffC33764),
-              Color(0xffC1D2671),
-            ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+            image: DecorationImage(
+          fit: BoxFit.cover,
+          image: AssetImage(
+            'assets/images/Blue Wallpaper.png',
+          ),
+        )
+            // gradient: LinearGradient(
+            //     // transform: GradientRotation(15.0),
+            //     colors: <Color>[
+            //   Color(0xffC33764),
+            //   Color(0xffC1D2671),
+            // ], begin: Alignment.topCenter, end: Alignment.bottomCenter)
+
+            ),
         child: Center(child: SingleChildScrollView(child: buildprofileview())),
       ),
       // body: Center(child: buildprofileview()),

@@ -70,7 +70,7 @@
 //     // Do something when payment fails
 //   }
 
-// ignore_for_file: unused_import
+// ignore_for_file: unused_import, prefer_const_constructors
 
 //   void _handleExternalWallet(ExternalWalletResponse response) {
 //     // Do something when an external wallet is selected
@@ -169,20 +169,35 @@ class _RazorPayState extends State<RazorPay> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.deepPurple,
-      ),
+          title: Center(
+              child: Padding(
+            padding: const EdgeInsets.only(right: 30),
+            child: Text(
+              'Go for payment',
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+          )),
+          backgroundColor: Colors.pink),
       body: Container(
         // ignore: prefer_const_constructors
         decoration: BoxDecoration(
+            image: const DecorationImage(
+          fit: BoxFit.cover,
+          image: AssetImage(
+            'assets/images/Blue Wallpaper.png',
+          ),
+        )
             // ignore: prefer_const_constructors
-            gradient: LinearGradient(
-                // transform: GradientRotation(15.0),
-                // ignore: prefer_const_literals_to_create_immutables
-                colors: <Color>[
-              const Color(0xffC33764),
-              // ignore: use_full_hex_values_for_flutter_colors
-              const Color(0xffC1D2671),
-            ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+            // gradient: LinearGradient(
+            //     // transform: GradientRotation(15.0),
+            //     // ignore: prefer_const_literals_to_create_immutables
+            //     colors: <Color>[
+            //   const Color(0xffC33764),
+            //   // ignore: use_full_hex_values_for_flutter_colors
+            //   const Color(0xffC1D2671),
+            // ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+
+            ),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
