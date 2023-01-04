@@ -659,7 +659,6 @@ dialougeShow(BuildContext context) {
                     showDialog(
                         context: context,
                         builder: ((context) => paymentSuccessed(context, crd)));
-                    // ignore: avoid_print
                     print('ttrtr$crd');
                   }
                 },
@@ -708,19 +707,23 @@ final controller = Get.put(LoginController());
 
 // ignore: prefer_typing_uninitialized_variables
 var cred;
+late int win;
 
-getCredit() async {
+getCredit(crd) async {
   FirebaseFirestore.instance
       .collection("users")
       .doc(controller.googleAccount.value!.id)
       .snapshots()
       .listen((event) {
     // ignore: avoid_print
-    print("higuybh${event.data()!['Credit']}");
     cred = event.data()!['Credit'];
+    win = event.data()!['Winingprice'];
     // ignore: avoid_print
     print('yyyy$cred');
     // setState(() {});
+  });
+  Future.delayed(const Duration(seconds: 5), () {
+    getUpdate(crd);
   });
 }
 
@@ -731,34 +734,14 @@ getUpdate(crd) async {
   FirebaseFirestore.instance
       .collection("users")
       .doc(controller.googleAccount.value!.id)
-      .update({"Credit": cred + crd});
-}
+      .update({"Credit": cred + crd, "Winingprice": win - crd});
 
-late int win;
-getWin() async {
-  FirebaseFirestore.instance
-      .collection("users")
-      .doc(controller.googleAccount.value!.id)
-      .snapshots()
-      .listen((event) {
-    // ignore: avoid_print
-    print("higuybh${event.data()!['Winingprice']}");
-    win = event.data()!['Winingprice'];
-  });
-}
-
-getWinUpdate(crd) async {
-  FirebaseFirestore.instance
-      .collection("users")
-      .doc(controller.googleAccount.value!.id)
-      .update({"Winingprice": win - crd});
+  // getWin();
 }
 
 paymentSuccessed(BuildContext context, crd) {
-  getCredit();
-  getUpdate(crd);
-  getWin();
-  getWinUpdate(crd);
+  getCredit(crd);
+
   return StatefulBuilder(builder: ((context, setState) {
     return AlertDialog(
         // title: Text("ugu"),
