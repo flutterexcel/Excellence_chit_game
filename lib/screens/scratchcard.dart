@@ -35,20 +35,32 @@ class _ScratchPageState extends State<ScratchPage> {
   ];
   // int count=0;
   double _opacity = 0.0;
-
+  List<bool> isfinished = [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ];
   @override
   void initState() {
     super.initState();
     // getUpdate();
     winprice.shuffle();
-
     getCredit();
     getWin();
   }
 
   num winp = 0;
 
-  late int win;
+  int win = 0;
   getWin() async {
     FirebaseFirestore.instance
         .collection("users")
@@ -97,6 +109,13 @@ class _ScratchPageState extends State<ScratchPage> {
         .doc(widget.controller.googleAccount.value!.id)
         .update({"Winingprice": win + int.parse(winprice[index])});
   }
+
+  // getWinPriceUpdate(index) async {
+  //   FirebaseFirestore.instance
+  //       .collection("users")
+  //       .doc(widget.controller.googleAccount.value!.id)
+  //       .update({"Winingprice": win + int.parse(winprice[index])});
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -215,7 +234,7 @@ class _ScratchPageState extends State<ScratchPage> {
                         print("bgugugu");
                         // dialougeShow(context);/
                         var rt = win;
-                        if (rt <= 100) {
+                        if (rt <= 150) {
                           showDialog(
                               context: context,
                               builder: ((context) => lowpayment(context)));
@@ -263,39 +282,44 @@ class _ScratchPageState extends State<ScratchPage> {
               _opacity = 1;
             });
           },
-          // onScratchEnd: () => getCredit() && getWinUpdate(),
+          // onScratchEnd: () =>  getUpdate() && getWinUpdate(index),
           onScratchEnd: () {
             count++;
-            getCredit();
-            getWinUpdate(index);
+            if (isfinished[index] == true) {
+              print('t');
+            } else {
+              print('yy');
+              getCredit();
+              getUpdate();
+              getWinUpdate(index);
+              isfinished[index] = true;
+              print('oo$isfinished');
+              var ct = 0;
+              for (int i = 0; i < isfinished.length; i++) {
+                if (isfinished[i]) {
+                  ct++;
+                  // break;
+                }
+              }
+              if (ct == 12) {
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => ScratchPage()));
+              }
+            }
+            // getCredit();
+            // getWinUpdate(index);
             setState(() {});
           },
-          // onScratchUpdate: () {
-          //   getWinUpdate(index);
-          // },
+
           onScratchStart: (() {
             if (cred == 0) {
               showModasheet(context);
-
-              // showDialog(
-              //     context: context,
-              //     builder: (BuildContext context) {
-              //       return AlertDialog(
-              //         title: Text("purchase"),
-              //       );
-              //     });
-            } else {
-              getUpdate();
             }
+            // else {
+            //   getUpdate();
+            // }
           }),
 
-          // onScratchStart: cred != 0
-          //     ? () {
-          //         getUpdate();
-          //       }
-          //     : () {
-          //         print('object');
-          //       },
           // onChange: (value) => print("Scratch progress: $value%"),
           // onChange: ((value) {
           //   print("gugygg$value");

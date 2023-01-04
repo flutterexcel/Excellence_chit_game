@@ -89,6 +89,11 @@ showModasheet(
                           () {
                             valuesecond = false;
                             valuefirst = !valuefirst;
+                            if (valuefirst == true) {
+                              crd = 100;
+                            } else {
+                              crd = 0;
+                            }
                           },
                         );
                       }),
@@ -116,6 +121,11 @@ showModasheet(
                                   () {
                                     valuesecond = false;
                                     valuefirst = !valuefirst;
+                                    if (valuefirst == true) {
+                                      crd = 100;
+                                    } else {
+                                      crd = 0;
+                                    }
                                   },
                                 );
                               },
@@ -206,6 +216,11 @@ showModasheet(
                           () {
                             valuefirst = false;
                             valuesecond = !valuesecond;
+                            if (valuesecond == true) {
+                              crd = 150;
+                            } else {
+                              crd = 0;
+                            }
                           },
                         );
                       },
@@ -234,6 +249,11 @@ showModasheet(
                                   () {
                                     valuefirst = false;
                                     valuesecond = !valuesecond;
+                                    if (valuesecond == true) {
+                                      crd = 150;
+                                    } else {
+                                      crd = 0;
+                                    }
                                   },
                                 );
                               },
@@ -443,6 +463,11 @@ dialougeShow(BuildContext context) {
                   () {
                     valuesecond = false;
                     valuefirst = !valuefirst;
+                    if (valuefirst == true) {
+                      crd = 100;
+                    } else {
+                      crd = 0;
+                    }
                   },
                 );
               },
@@ -469,6 +494,11 @@ dialougeShow(BuildContext context) {
                           () {
                             valuesecond = false;
                             valuefirst = !valuefirst;
+                            if (valuefirst == true) {
+                              crd = 100;
+                            } else {
+                              crd = 0;
+                            }
                           },
                         );
                       },
@@ -531,6 +561,11 @@ dialougeShow(BuildContext context) {
                   () {
                     valuefirst = false;
                     valuesecond = !valuesecond;
+                    if (valuesecond == true) {
+                      crd = 150;
+                    } else {
+                      crd = 0;
+                    }
                   },
                 );
               },
@@ -555,6 +590,11 @@ dialougeShow(BuildContext context) {
                           () {
                             valuefirst = false;
                             valuesecond = !valuesecond;
+                            if (valuesecond == true) {
+                              crd = 150;
+                            } else {
+                              crd = 0;
+                            }
                           },
                         );
                       },
@@ -611,7 +651,7 @@ dialougeShow(BuildContext context) {
               child: ElevatedButton(
                 onPressed: () {
                   var pt = crd;
-                  if (pt != 100 && pt != 150) {
+                  if (pt == 0) {
                     showDialog(
                         context: context,
                         builder: ((context) => option(context)));
@@ -669,10 +709,6 @@ final controller = Get.put(LoginController());
 var cred;
 
 getCredit() async {
-  // ignore: avoid_print
-  print('yyyy$cred');
-  // ignore: avoid_print
-  print('uuuu${controller.googleAccount.value!.id}');
   FirebaseFirestore.instance
       .collection("users")
       .doc(controller.googleAccount.value!.id)
@@ -697,9 +733,31 @@ getUpdate(crd) async {
       .update({"Credit": cred + crd});
 }
 
+late int win;
+getWin() async {
+  FirebaseFirestore.instance
+      .collection("users")
+      .doc(controller.googleAccount.value!.id)
+      .snapshots()
+      .listen((event) {
+    // ignore: avoid_print
+    print("higuybh${event.data()!['Winingprice']}");
+    win = event.data()!['Winingprice'];
+  });
+}
+
+getWinUpdate(crd) async {
+  FirebaseFirestore.instance
+      .collection("users")
+      .doc(controller.googleAccount.value!.id)
+      .update({"Winingprice": win - crd});
+}
+
 paymentSuccessed(BuildContext context, crd) {
   getCredit();
   getUpdate(crd);
+  getWin();
+  getWinUpdate(crd);
   return StatefulBuilder(builder: ((context, setState) {
     return AlertDialog(
         // title: Text("ugu"),
@@ -743,7 +801,7 @@ lowpayment(BuildContext context) {
               child: Padding(
             padding: const EdgeInsets.only(left: 0),
             child: const Text(
-              ' Your winning amout atleast Rs 100',
+              ' Your winning amout atleast Rs 150',
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             ),
           )),
