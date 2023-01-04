@@ -290,7 +290,9 @@ class _ScratchPageState extends State<ScratchPage> {
             } else {
               print('yy');
               getCredit();
-              getUpdate();
+              if (cred > 0) {
+                getUpdate();
+              }
               getWinUpdate(index);
               isfinished[index] = true;
               print('oo$isfinished');
@@ -339,23 +341,26 @@ class _ScratchPageState extends State<ScratchPage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 // crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(top: 25, left: 4),
-                    child: Center(
-                      child: Text(
-                        "You won",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 15,
-                            letterSpacing: 1,
-                            color: Colors.black),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Center(child: Text(winprice[index])),
+                  // for (int i = 0; i < winprice.length; i++)
+                  (winprice[index] != 'Better luck next time')
+                      ? Padding(
+                          padding: EdgeInsets.only(top: 25, left: 4),
+                          child: Center(
+                            child: Text(
+                              "You won ${winprice[index]}",
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 15,
+                                  letterSpacing: 1,
+                                  color: Colors.black),
+                            ),
+                          ),
+                        )
+                      : Text('hh'),
+                  // const SizedBox(
+                  //   height: 5,
+                  // ),
+                  // Center(child: Text(winprice[index])),
                 ],
               ),
             ),
