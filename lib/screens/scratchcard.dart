@@ -271,17 +271,18 @@ class _ScratchPageState extends State<ScratchPage> {
       clipBehavior: Clip.antiAlias,
       borderOnForeground: true,
       shadowColor: Colors.black,
-      elevation: 20,
+      elevation: 30,
       color: const Color.fromARGB(255, 190, 103, 132),
       shape: RoundedRectangleBorder(
           side: const BorderSide(color: Colors.black),
-          borderRadius: BorderRadius.circular(20)),
+          borderRadius: BorderRadius.circular(50)),
       child: Container(
         height: 90,
         width: 90,
         decoration: const BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(20))),
+            borderRadius: BorderRadius.all(Radius.circular(30))),
         child: Scratcher(
+          // enabled: false,
           brushSize: 80,
           threshold: 25,
           accuracy: ScratchAccuracy.low,

@@ -179,7 +179,7 @@ class _RazorPayState extends State<RazorPay> {
           )),
           backgroundColor: Colors.pink),
       body: Container(
-        // ignore: prefer_const_constructors
+        // ignore: prefer_const_constructors, duplicate_ignore
         decoration: BoxDecoration(
             image: const DecorationImage(
           fit: BoxFit.cover,
