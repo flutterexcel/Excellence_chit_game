@@ -244,7 +244,7 @@ class _ScratchPageState extends State<ScratchPage> {
                         print("bgugugu");
                         // dialougeShow(context);/
                         var rt = win;
-                        if (rt <= 10) {
+                        if (rt <= 150) {
                           showDialog(
                               context: context,
                               builder: ((context) => lowpayment(context)));
