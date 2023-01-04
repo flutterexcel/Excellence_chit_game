@@ -128,6 +128,7 @@ class GoogleAuth extends StatelessWidget {
             height: 100,
           ),
           FloatingActionButton.extended(
+            heroTag: null,
             onPressed: (() {
               controller.login(context);
               // FirebaseFirestore.instance.collection('users').doc(googl.data!.docs[index]
@@ -146,6 +147,7 @@ class GoogleAuth extends StatelessWidget {
             height: 20,
           ),
           FloatingActionButton.extended(
+            heroTag: null,
             onPressed: (() {
               facebookLogin(context);
             }),
