@@ -299,9 +299,11 @@ class _RazorPayState extends State<RazorPay> {
     Widget continueButton = ElevatedButton(
       child: const Text("Continue"),
       onPressed: () {
-        Navigator.pop(context);
+        Navigator.of(context, rootNavigator: true).pop('dialog');
+
+        // showAlertDialog.dismiss();
         // Navigator.pop(context);
-        // Navigator.pop(context);
+        // Navigator.pop(context);+110l
 
         // Navigator.of(context).pushReplacement(
         //     MaterialPageRoute(builder: (context) => ScratchPage()));
