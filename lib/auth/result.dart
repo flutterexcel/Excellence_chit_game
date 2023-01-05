@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 // ignore: must_be_immutable
 class Result extends StatelessWidget {
@@ -20,8 +21,20 @@ class Result extends StatelessWidget {
               //   radius: 50,
               // ),
               Text(userData['email']),
+              ElevatedButton(
+                  onPressed: () {
+                    logout();
+                  },
+                  child: Text('logout'))
             ],
           ),
         ));
+  }
+
+  logout() async {
+    await FacebookAuth.instance.logOut();
+    // _accessToken = null;
+    // userData = null;
+    // setState(() {});
   }
 }

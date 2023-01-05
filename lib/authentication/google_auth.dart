@@ -41,17 +41,21 @@ class GoogleAuth extends StatelessWidget {
         //   Color(0xffC1D2671),
         // ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
         child: Center(
-          child: Obx(() {
-            if (controller.googleAccount.value == null) {
-              return buildloginbutton(context);
-            } else {
-              return SizedBox();
-            }
-            // else {
-            //   return buildprofileview();
-            // }
-          }),
-        ),
+            child: controller.userData == null
+                ? buildloginbutton(context)
+                : SizedBox()
+
+            // Obx(() {
+            //   if (controller.userData == null) {
+            //     return buildloginbutton(context);
+            //   } else {
+            //     return SizedBox();
+            //   }
+            //   // else {
+            //   //   return buildprofileview();
+            //   // }
+            // }),
+            ),
       ),
     );
   }
@@ -131,8 +135,6 @@ class GoogleAuth extends StatelessWidget {
             heroTag: null,
             onPressed: (() {
               controller.login(context);
-              // FirebaseFirestore.instance.collection('users').doc(googl.data!.docs[index]
-              //                             .id)
             }),
             icon: Image.asset(
               'assets/images/google_logo.png',
@@ -175,6 +177,7 @@ class GoogleAuth extends StatelessWidget {
       print("ghghgh");
       if (result.status == LoginStatus.success) {
         final userData = await FacebookAuth.i.getUserData();
+        print('cccc$userData');
         // ignore: avoid_print
         print("hello");
         // ignore: use_build_context_synchronously
@@ -207,4 +210,5 @@ class GoogleAuth extends StatelessWidget {
   //     foregroundColor: Colors.black,
   //   );
   // }
+
 }

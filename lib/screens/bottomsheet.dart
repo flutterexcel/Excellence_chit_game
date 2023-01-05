@@ -712,7 +712,7 @@ late int win;
 getCredit(crd) async {
   FirebaseFirestore.instance
       .collection("users")
-      .doc(controller.googleAccount.value!.id)
+      .doc(controller.userData!['id'])
       .snapshots()
       .listen((event) {
     // ignore: avoid_print
@@ -733,7 +733,7 @@ getUpdate(crd) async {
 
   FirebaseFirestore.instance
       .collection("users")
-      .doc(controller.googleAccount.value!.id)
+      .doc(controller.userData!['id'])
       .update({"Credit": cred + crd, "Winingprice": win - crd});
 
   // getWin();

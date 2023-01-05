@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:chit_game_android/authentication/google_auth.dart';
 import 'package:chit_game_android/screens/profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -15,30 +17,31 @@ class LoginController extends GetxController {
   var googleAccount = Rx<GoogleSignInAccount?>(null);
   late String myCredit;
   late String match;
-
+  Map<String, dynamic>? userData;
   _demoStore(String id) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString("id_value", id);
   }
 
   login(context) async {
-    // ignore: unused_local_variable
-
-    // void inputData() {
-    //   final User? user = auth.currentUser;
-    //   final uid = user!.uid;
-    //   // here you write the codes to input the data into firestore
-    // }
-
     googleAccount.value = await _googleSignin.signIn();
     // ignore: avoid_print
     print("object${googleAccount.value}");
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    userData = {
+      "email": googleAccount.value!.email,
+      "userName": googleAccount.value!.displayName,
+      "photo": googleAccount.value!.photoUrl,
+      "id": googleAccount.value!.id
+    };
 
+    if (googleAccount.value != null) {
+      prefs.setString("userData", json.encode(userData));
+    }
     if (googleAccount.value!.displayName != null) {
       Navigator.of(context)
           .pushReplacement(MaterialPageRoute(builder: (context) => Profile()));
-      if (prefs.getString("id_value") == null) {
+      if (prefs.get("id_value") == null) {
         _demoStore(googleAccount.value!.id);
       }
       if (googleAccount.value!.id != prefs.getString("id_value")) {
@@ -55,43 +58,25 @@ class LoginController extends GetxController {
             .doc(googleAccount.value!.id)
             .set(googleuser, SetOptions(merge: true));
       }
-      //     Future<User> _fetchUserInfo(String id) async {
-      //   User fetchedUser;
-      //   var snapshot =
-      //       await Firestore.instance.collection('user').document(id).get();
-      //   return User(snapshot);
-      // }
-
-      // FirebaseFirestore.instance
-      //     .collection("users")
-      //     .doc(googleAccount.value!.id)
-      //     .snapshots()
-      //     .listen((event) {
-      //   print("higuybh${event.data()!['Credit']}");
-      //   var cred = {event.data()!['Credit']};
-      // });
-
-      // DocumentSnapshot docRef = await FirebaseFirestore.instance
-      //     .collection("users")
-      //     .doc(
-      //       googleAccount.value!.id,
-      //     )
-      //     .get();
-      // // print("dfsdfs${docRef.data()!.Credit}");
-      // // docRef.get().then(
-      // //   (DocumentSnapshot doc) {
-      // //     final data = doc.data() as Map<String, dynamic>;
-      // //     // ...
-      // //   },
-      // //   onError: (e) => print("Error getting document: $e"),
-      // // );
     }
   }
 
   logout(context) async {
     googleAccount.value = await _googleSignin.disconnect();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    userData = null;
+    prefs.remove("userData");
     // Navigator.pop(context);
     Navigator.of(context)
         .pushReplacement(MaterialPageRoute(builder: (context) => GoogleAuth()));
+  }
+
+  getUserDetails(context, userDataa) {
+    userData = {
+      "email": userDataa!['email'],
+      "userName": userDataa!['userName'],
+      "photo": userDataa!['photo'],
+      "id": userDataa!['id']
+    };
   }
 }

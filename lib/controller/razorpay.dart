@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // import 'package:flutter/material.dart';
 // import 'package:flutter/services.dart';
 // import 'package:razorpay_flutter/razorpay_flutter.dart';
@@ -76,6 +77,8 @@
 //     // Do something when an external wallet is selected
 //   }
 // }
+=======
+>>>>>>> 956fb9db3f789f77090b3d19ac50a751d1ea6828
 import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
@@ -88,33 +91,10 @@ import '../screens/scratchcard.dart';
 import '../service/services.dart';
 import 'login_controller.dart';
 
-// class RazoPay extends StatelessWidget {
-//   num crd;
-//   RazoPay({required this.crd});
-//   final controller = Get.put(LoginController());
-
-//   // This widget is the root of your application.
-//   @override
-//   Widget build(BuildContext context) {
-//     return const MaterialApp(
-//       home: RazorPay(title: 'Payment'),
-//     );
-//   }
-// }
-
 // ignore: must_be_immutable
 class RazorPay extends StatefulWidget {
   num crd;
   RazorPay({super.key, required this.crd});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   // final String title;
 
@@ -140,10 +120,10 @@ class _RazorPayState extends State<RazorPay> {
     // ignore: avoid_print
     print('yyyy$cred');
     // ignore: avoid_print
-    print('uuuu${controller.googleAccount.value!.id}');
+    print('uuuu${controller.userData!['id']}');
     FirebaseFirestore.instance
         .collection("users")
-        .doc(controller.googleAccount.value!.id)
+        .doc(controller.userData!['id'])
         .snapshots()
         .listen((event) {
       // ignore: avoid_print
@@ -161,7 +141,7 @@ class _RazorPayState extends State<RazorPay> {
 
     FirebaseFirestore.instance
         .collection("users")
-        .doc(controller.googleAccount.value!.id)
+        .doc(controller.userData!['id'])
         .update({"Credit": cred + widget.crd});
   }
 
