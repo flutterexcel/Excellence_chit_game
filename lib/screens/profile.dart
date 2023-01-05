@@ -8,7 +8,6 @@ import 'package:chit_game_android/screens/MyBlinkingButton.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 class Profile extends StatefulWidget {
   Profile({super.key});
@@ -19,12 +18,8 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  final _googleSignin = GoogleSignIn();
-
   @override
   void initState() {
-    // ignore: todo
-    // TODO: implement initState
     super.initState();
     getCredit();
   }
@@ -33,7 +28,7 @@ class _ProfileState extends State<Profile> {
   getCredit() async {
     FirebaseFirestore.instance
         .collection("users")
-        .doc(widget.controller.googleAccount.value!.id)
+        .doc(widget.controller.userData!['id'])
         .snapshots()
         .listen((event) {
       // ignore: avoid_print
@@ -77,16 +72,15 @@ class _ProfileState extends State<Profile> {
       mainAxisSize: MainAxisSize.min,
       children: [
         CircleAvatar(
-          backgroundImage: Image.network(
-                  widget.controller.googleAccount.value?.photoUrl ?? '')
-              .image,
+          backgroundImage:
+              Image.network(widget.controller.userData!['photo']).image,
           radius: 70,
         ),
         const SizedBox(
           height: 15,
         ),
         Text(
-          widget.controller.googleAccount.value?.displayName ?? '',
+          widget.controller.userData!['userName'],
           style: const TextStyle(
               color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
           // Get.textTheme.bodyText1,
@@ -97,7 +91,7 @@ class _ProfileState extends State<Profile> {
           height: 10,
         ),
         Text(
-          widget.controller.googleAccount.value?.email ?? '',
+          widget.controller.userData!['email'],
           style: const TextStyle(
               color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
           // Get.textTheme.bodyText1,

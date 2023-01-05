@@ -1,8 +1,14 @@
 // ignore_for_file: file_names, duplicate_ignore
 import 'dart:async';
+import 'dart:convert';
 //import 'package:chit_game/login_page.dart';
 import 'package:chit_game_android/authentication/google_auth.dart';
+import 'package:chit_game_android/controller/login_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../screens/profile.dart';
 // import 'package:chit_game_android/auth/facebook_auth.dart';
 
 // import 'login_page.dart';
@@ -16,16 +22,33 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  final controller = Get.put(LoginController());
+
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => GoogleAuth(),
-          ));
-    });
+    checkUser();
+  }
+
+  checkUser() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var rt = prefs.getString("userData");
+    print("jhvhbvg$rt");
+    if (rt == null) {
+      Timer(const Duration(seconds: 3), () {
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => GoogleAuth(),
+            ));
+      });
+    } else {
+      Map userData = jsonDecode(rt);
+
+      controller.getUserDetails(context, userData);
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (context) => Profile()));
+    }
   }
 
   @override
