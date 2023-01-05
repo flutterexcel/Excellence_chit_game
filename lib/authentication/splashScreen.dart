@@ -36,15 +36,25 @@ class _SplashScreenState extends State<SplashScreen> {
         // ignore: prefer_const_constructors
         decoration: BoxDecoration(
             // ignore: prefer_const_constructors
-            gradient: LinearGradient(
-                // transform: GradientRotation(15.0),
-                // ignore: prefer_const_literals_to_create_immutables
-                colors: <Color>[
-              // ignore: prefer_const_constructors
-              Color(0xffC33764),
-              // ignore: use_full_hex_values_for_flutter_colors
-              const Color(0xffC1D2671),
-            ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+            image: DecorationImage(
+          fit: BoxFit.cover,
+          // ignore: prefer_const_constructors
+          image: AssetImage(
+            'assets/images/Blue Wallpaper.png',
+          ),
+        )
+            // ignore: prefer_const_constructors
+            // gradient: LinearGradient(
+            //     // transform: GradientRotation(15.0),
+            //     // ignore: prefer_const_literals_to_create_immutables
+            //     colors: <Color>[
+            //   // ignore: prefer_const_constructors
+            //   Color(0xffC33764),
+            //   // ignore: use_full_hex_values_for_flutter_colors
+            //   const Color(0xffC1D2671),
+            // ], begin: Alignment.topCenter, end: Alignment.bottomCenter)
+
+            ),
 
         // ignore: prefer_const_constructors
         child: Center(

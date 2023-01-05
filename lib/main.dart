@@ -1,37 +1,18 @@
-// import 'package:chit_game_android/auth/facebook_auth.dart';
-// import 'package:chit_game_android/screens/splashScreen.dart';
-// // import 'package:facebook_login/screens/login_screen.dart';
-// import 'package:flutter/material.dart';
+// ignore_for_file: unused_local_variable, unrelated_type_equality_checks
 
-// void main() {
-//   runApp(const MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-
-//   // This widget is the root of your application.
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Flutter Demo',
-//       theme: ThemeData(
-//         primarySwatch: Colors.blue,
-//       ),
-//       home: const SplashScreen(),
-//     );
-//   }
-// }
+import 'package:chit_game_android/screens/bottomsheet.dart';
+import 'package:chit_game_android/screens/profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
+import 'authentication/google_auth.dart';
 import 'authentication/splashScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  // ignore: unused_local_variable
+
   CollectionReference db = FirebaseFirestore.instance.collection("users");
 
   runApp(const MyApp());
@@ -49,5 +30,23 @@ class MyApp extends StatelessWidget {
       // ),
       home: SplashScreen(),
     );
+    // return FutureBuilder(
+    //     future: SharedPreferences.getInstance(),
+    //     builder:
+    //         (BuildContext context, AsyncSnapshot<SharedPreferences> prefs) {
+    //       var x = prefs.data;
+    //       if (prefs.hasData) {
+    //         if (x!.getInt('id') ==
+    //             FirebaseFirestore.instance
+    //                 .collection("users")
+    //                 .doc(controller.googleAccount.value!.id)) {
+    //           return MaterialApp(home: Profile());
+    //         } else
+    //           // ignore: curly_braces_in_flow_control_structures
+    //           return MaterialApp(home: GoogleAuth());
+    //       }
+
+    //       return const MaterialApp(home: SplashScreen());
+    //     });
   }
 }

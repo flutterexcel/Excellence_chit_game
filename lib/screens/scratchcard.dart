@@ -194,8 +194,8 @@ class _ScratchPageState extends State<ScratchPage> {
                   itemCount: 12,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3,
-                      crossAxisSpacing: 10.0,
-                      mainAxisSpacing: 10.0),
+                      crossAxisSpacing: 8.0,
+                      mainAxisSpacing: 8.0),
                   itemBuilder: (BuildContext context, int index) {
                     return showScratchCard(context, index);
                   },

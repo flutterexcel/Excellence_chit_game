@@ -70,7 +70,7 @@
 //     // Do something when payment fails
 //   }
 
-// ignore_for_file: unused_import, prefer_const_constructors
+// ignore_for_file: unused_import, prefer_const_constructors, duplicate_ignore
 
 //   void _handleExternalWallet(ExternalWalletResponse response) {
 //     // Do something when an external wallet is selected
@@ -178,6 +178,7 @@ class _RazorPayState extends State<RazorPay> {
             ),
           )),
           backgroundColor: Colors.pink),
+      // ignore: duplicate_ignore
       body: Container(
         // ignore: prefer_const_constructors, duplicate_ignore
         decoration: BoxDecoration(
