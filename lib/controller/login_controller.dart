@@ -20,12 +20,17 @@ class LoginController extends GetxController {
   late String myCredit;
   late String match;
   AccessToken? _accessToken;
-  var check;
+  // var check;
   // bool _checking = true;
   Map<String, dynamic>? userData;
   _demoStore(String id) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString("id_value", id);
+  }
+
+  signinmethod(String check) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString("checking", check);
   }
 
   login(context) async {
@@ -46,7 +51,7 @@ class LoginController extends GetxController {
     if (googleAccount.value!.displayName != null) {
       Navigator.of(context)
           .pushReplacement(MaterialPageRoute(builder: (context) => Profile()));
-      if (prefs.get("id_value") == null) {
+      if (prefs.getString("id_value") == null) {
         _demoStore(googleAccount.value!.id);
       }
       if (googleAccount.value!.id != prefs.getString("id_value")) {
@@ -64,7 +69,10 @@ class LoginController extends GetxController {
             .set(googleuser, SetOptions(merge: true));
       }
     }
-    check = 1;
+    // check = 1;
+    if (prefs.getString("checking") == null) {
+      signinmethod('google');
+    }
   }
 
   // checkIfisLoggedIn(context) async {
@@ -101,7 +109,7 @@ class LoginController extends GetxController {
         "id": userDataa['id'],
       };
       prefs.setString("userData", json.encode(userData));
-      if (prefs.get("id_value") == null) {
+      if (prefs.getString("id_value") == null) {
         _demoStore(userData!['id']);
       }
       print('eeee$userData');
@@ -117,7 +125,9 @@ class LoginController extends GetxController {
     // setState(() {
     //   _checking = false;
     // });
-    check = 2;
+    if (prefs.getString("checking") == null) {
+      signinmethod('facebook');
+    }
   }
 
   logoutt(context) async {
