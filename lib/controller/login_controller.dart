@@ -1,10 +1,12 @@
 import 'dart:convert';
 
+import 'package:chit_game_android/auth/profileF.dart';
 import 'package:chit_game_android/authentication/google_auth.dart';
 import 'package:chit_game_android/screens/profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -17,6 +19,9 @@ class LoginController extends GetxController {
   var googleAccount = Rx<GoogleSignInAccount?>(null);
   late String myCredit;
   late String match;
+  AccessToken? _accessToken;
+  var check;
+  // bool _checking = true;
   Map<String, dynamic>? userData;
   _demoStore(String id) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -59,9 +64,79 @@ class LoginController extends GetxController {
             .set(googleuser, SetOptions(merge: true));
       }
     }
+    check = 1;
+  }
+
+  // checkIfisLoggedIn(context) async {
+  //   final accessToken = await FacebookAuth.instance.accessToken;
+  //   print('bbbbb${accessToken!.toJson()}');
+
+  //   if (accessToken != null) {
+  //     print(accessToken.toJson());
+  //     userData = await FacebookAuth.instance.getUserData();
+  //     _accessToken = accessToken;
+  //     Navigator.of(context)
+  //         .pushReplacement(MaterialPageRoute(builder: (context) => ProfileF()));
+  //   } else {
+  //     loginn(context);
+  //   }
+  // }
+
+  loginn(context) async {
+    print('oooo');
+    final LoginResult result = await FacebookAuth.instance
+        .login(loginBehavior: LoginBehavior.dialogOnly);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    // print('dddd$_accessToken');
+    if (result.status == LoginStatus.success) {
+      _accessToken = result.accessToken;
+      // print('dddd$_accessToken');
+
+      final userDataa = await FacebookAuth.instance.getUserData();
+      userData = {
+        "email": userDataa['email'],
+        "userName": userDataa['name'],
+        "photo": userDataa['picture']['data']['url'],
+        "id": userDataa['id'],
+      };
+      prefs.setString("userData", json.encode(userData));
+      if (prefs.get("id_value") == null) {
+        _demoStore(userData!['id']);
+      }
+      print('eeee$userData');
+      if (userData!['email'] != null) {
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => ProfileF()));
+      }
+      print("nvg$userData");
+    } else {
+      print(result.status);
+      print(result.message);
+    }
+    // setState(() {
+    //   _checking = false;
+    // });
+    check = 2;
+  }
+
+  logoutt(context) async {
+    print('mmmmmmm');
+    await FacebookAuth.instance.logOut();
+    FirebaseAuth.instance.signOut();
+    // accessToken = null;
+    // LoginResult result = null;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    userData = null;
+    prefs.remove("userData");
+
+    Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (context) => GoogleAuth()));
+    //  setState(() {});
   }
 
   logout(context) async {
+    print('vvvv');
     googleAccount.value = await _googleSignin.disconnect();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     userData = null;
@@ -80,3 +155,5 @@ class LoginController extends GetxController {
     };
   }
 }
+
+//implementation of facebook_auth_flutter ?
