@@ -52,12 +52,15 @@ class _SplashScreenState extends State<SplashScreen> {
       });
     } else {
       Map userData = jsonDecode(rt);
+      print('wwww$rt');
       controller.getUserDetails(context, userData);
       print('qqqq$userData');
-      if (controller.check == 1) {
+      if (prefs.getString("checking") == 'google') {
+        print('nnjnjnh');
         Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => Profile()));
       } else {
+        print('ooo');
         Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => ProfileF()));
       }

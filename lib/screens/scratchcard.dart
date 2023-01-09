@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:scratcher/widgets.dart';
 import '../controller/login_controller.dart';
 import 'bottomsheet.dart';
+import 'profile.dart';
 
 class ScratchPage extends StatefulWidget {
   ScratchPage({super.key});
@@ -127,6 +128,10 @@ class _ScratchPageState extends State<ScratchPage> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
           appBar: AppBar(
+            leading: IconButton(
+                icon: const Icon(Icons.arrow_back, color: Colors.white),
+                onPressed: () => Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => Profile()))),
             title: const Center(child: Text("Scracth and win")),
             backgroundColor: Colors.pink,
             actions: [

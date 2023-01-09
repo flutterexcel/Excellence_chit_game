@@ -26,6 +26,7 @@ class _ProfileState extends State<Profile> {
 
   var cred;
   getCredit() async {
+    print("guyfth");
     FirebaseFirestore.instance
         .collection("users")
         .doc(widget.controller.userData!['id'])
@@ -34,6 +35,7 @@ class _ProfileState extends State<Profile> {
       // ignore: avoid_print
       print("higuybh${event.data()!['Credit']}");
       cred = event.data()!['Credit'];
+      print('njiun$cred');
       setState(() {});
     });
   }

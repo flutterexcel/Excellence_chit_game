@@ -68,12 +68,12 @@ class _RazorPayState extends State<RazorPay> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Center(
+          title: const Center(
               child: Padding(
-            padding: const EdgeInsets.only(right: 30),
+            padding: EdgeInsets.only(right: 30),
             child: Text(
               'Go for payment',
-              style: const TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold),
             ),
           )),
           backgroundColor: Colors.pink),
@@ -199,6 +199,8 @@ class _RazorPayState extends State<RazorPay> {
       child: const Text("Continue"),
       onPressed: () {
         Navigator.of(context, rootNavigator: true).pop('dialog');
+        Navigator.pop(context);
+        // Nav
 
         // showAlertDialog.dismiss();
         // Navigator.pop(context);
