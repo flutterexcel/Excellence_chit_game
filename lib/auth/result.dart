@@ -25,6 +25,7 @@ class Result extends StatelessWidget {
                   onPressed: () {
                     logout();
                   },
+                  // ignore: prefer_const_constructors
                   child: Text('logout'))
             ],
           ),

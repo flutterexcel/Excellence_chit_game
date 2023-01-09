@@ -62,6 +62,7 @@ class _ScratchPageState extends State<ScratchPage> {
 
   int win = 0;
   getWin() async {
+    // ignore: avoid_print
     print('pppp${controller.userData!['id']}');
     FirebaseFirestore.instance
         .collection("users")
@@ -298,11 +299,13 @@ class _ScratchPageState extends State<ScratchPage> {
           onScratchEnd: () {
             count++;
             if (isfinished[index] == true) {
+              // ignore: avoid_print
               print('t');
               // if (winprice[index] != 'Better luck next time') {
               //   getWinUpdate(index);
               // }
             } else {
+              // ignore: avoid_print
               print('yy');
               getCredit();
               if (cred > 0) {
@@ -313,6 +316,7 @@ class _ScratchPageState extends State<ScratchPage> {
               if (isfinished[index] == true && cred != 0) {
                 getWinUpdate(index);
               }
+              // ignore: avoid_print
               print('oo$isfinished');
               var ct = 0;
               for (int i = 0; i < isfinished.length; i++) {
@@ -392,6 +396,7 @@ class _ScratchPageState extends State<ScratchPage> {
                                 maxLines: 2,
                                 // ignore: prefer_const_constructors
                                 style: TextStyle(
+                                    // ignore: prefer_const_constructors
                                     color: Color.fromARGB(255, 239, 212, 131),
                                     fontWeight: FontWeight.bold,
                                     fontSize: 16),

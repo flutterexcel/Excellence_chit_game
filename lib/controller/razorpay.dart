@@ -1,93 +1,9 @@
-<<<<<<< HEAD
-// import 'package:flutter/material.dart';
-// import 'package:flutter/services.dart';
-// import 'package:razorpay_flutter/razorpay_flutter.dart';
-
-// class RazoPay extends StatefulWidget {
-//   const RazoPay({super.key});
-
-//   @override
-//   State<RazoPay> createState() => _RazoPayState();
-// }
-
-// class _RazoPayState extends State<RazoPay> {
-//   static const platform = MethodChannel("razorpay_flutter");
-
-//   var _razorpay = Razorpay();
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: Scaffold(
-//         appBar: AppBar(
-//           title: const Text("Buy Now"),
-//         ),
-//         body: Center(
-//             child: Row(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: <Widget>[
-//             ElevatedButton(
-//                 onPressed: onPressed, child: const Text("Go for payment"))
-//           ],
-//         )),
-//       ),
-//     );
-//   }
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
-//     _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
-//     _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
-//     _razorpay.open(options);
-//   }
-
-//   @override
-//   void dispose() {
-//     super.dispose();
-//     _razorpay.clear(); // Removes all listeners
-//   }
-
-//   var options = {
-//     'key': '<YOUR_KEY_ID>',
-//     'amount': 50000, //in the smallest currency sub-unit.
-//     'name': 'Acme Corp.',
-//     'order_id': 'order_EMBFqjDHEEn80l', // Generate order_id using Orders API
-//     'description': 'Fine T-Shirt',
-//     'timeout': 60, // in seconds
-//     'prefill': {'contact': '9123456789', 'email': 'gaurav.kumar@example.com'}
-//   };
-
-// // try{
-// //   _razorpay.open(options);
-// // }catch(e){
-// //   debugPrint(e);
-// // }
-//   void _handlePaymentSuccess(PaymentSuccessResponse response) {
-//     // Do something when payment succeeds
-//   }
-
-//   void _handlePaymentError(PaymentFailureResponse response) {
-//     // Do something when payment fails
-//   }
-
-// ignore_for_file: unused_import, prefer_const_constructors, duplicate_ignore
-
-//   void _handleExternalWallet(ExternalWalletResponse response) {
-//     // Do something when an external wallet is selected
-//   }
-// }
-=======
->>>>>>> 956fb9db3f789f77090b3d19ac50a751d1ea6828
 import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-
 import 'package:flutter/material.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
-
-import '../screens/scratchcard.dart';
 import '../service/services.dart';
 import 'login_controller.dart';
 
@@ -149,9 +65,12 @@ class _RazorPayState extends State<RazorPay> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+          // ignore: prefer_const_constructors
           title: Center(
+              // ignore: prefer_const_constructors
               child: Padding(
             padding: const EdgeInsets.only(right: 30),
+            // ignore: prefer_const_constructors
             child: Text(
               'Go for payment',
               style: const TextStyle(fontWeight: FontWeight.bold),

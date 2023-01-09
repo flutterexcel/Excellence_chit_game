@@ -104,7 +104,7 @@ class GoogleAuth extends StatelessWidget {
           Container(
             height: 300,
             width: 300,
-            padding: new EdgeInsets.all(10.0),
+            padding: EdgeInsets.all(10.0),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(150.0),
                 image: DecorationImage(
@@ -189,7 +189,7 @@ class GoogleAuth extends StatelessWidget {
         // ignore: avoid_print
         print('AAAAAAA');
       }
-      print("agsgsg");
+      print("sgsgsg");
     } catch (error) {
       print(error);
     }

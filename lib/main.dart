@@ -1,11 +1,15 @@
 // ignore_for_file: unused_local_variable, unrelated_type_equality_checks
 
+// ignore: unused_import
 import 'package:chit_game_android/screens/bottomsheet.dart';
+// ignore: unused_import
 import 'package:chit_game_android/screens/profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+// ignore: unused_import
 import 'package:shared_preferences/shared_preferences.dart';
+// ignore: unused_import
 import 'authentication/google_auth.dart';
 import 'authentication/splashScreen.dart';
 

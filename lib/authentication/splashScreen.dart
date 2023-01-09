@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, duplicate_ignore
+// ignore_for_file: file_names, duplicate_ignore, use_build_context_synchronously
 import 'dart:async';
 import 'dart:convert';
 //import 'package:chit_game/login_page.dart';
@@ -33,6 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
   checkUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var rt = prefs.getString("userData");
+    // ignore: avoid_print
     print("jhvhbvg$rt");
     if (rt == null) {
       Timer(const Duration(seconds: 3), () {
