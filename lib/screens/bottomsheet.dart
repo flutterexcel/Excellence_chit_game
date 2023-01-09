@@ -400,20 +400,9 @@ dialougeShow(BuildContext context) {
     // ignore: avoid_print
     print("hsjdkfkd");
     return AlertDialog(
-      // title: Text("ugu"),
       // ignore: sized_box_for_whitespace
       content: Container(
         width: 600,
-        // decoration:
-        //     // ignore: prefer_const_constructors
-        //     BoxDecoration(
-        //   // ignore: prefer_const_constructors
-        //   borderRadius: BorderRadius.only(
-        //     topRight: const Radius.circular(50),
-        //     topLeft: const Radius.circular(50),
-        //     // ignore: prefer_const_constructors
-        //   ),
-        // ),
         height: 350,
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -421,25 +410,6 @@ dialougeShow(BuildContext context) {
             Row(
               // ignore: prefer_const_literals_to_create_immutables
               children: [
-                // ignore: prefer_const_constructors
-                // InkWell(
-                //   onTap: () {
-                //     Navigator.pushReplacement(
-                //       context,
-                //       MaterialPageRoute(builder: (context) => ScratchPage()),
-                //     );
-                //   },
-                //   child: const Icon(
-                //     Icons.arrow_back_ios,
-                //     size: 13,
-                //   ),
-                // ),
-                // ignore: prefer_const_constructors
-                // Text(
-                //   'Back',
-                //   style: const TextStyle(
-                //       fontWeight: FontWeight.bold, fontSize: 12),
-                // ),
                 // ignore: prefer_const_constructors
                 SizedBox(
                   width: 25,
@@ -488,8 +458,6 @@ dialougeShow(BuildContext context) {
                       value: valuefirst,
                       // ignore: avoid_types_as_parameter_names, non_constant_identifier_names
                       onChanged: (Value) {
-                        // valuesecond = false;
-
                         setState(
                           () {
                             valuesecond = false;
@@ -503,18 +471,7 @@ dialougeShow(BuildContext context) {
                         );
                       },
                     ),
-                    // Checkbox(
-                    //     value: false,
-                    //     onChanged: ((value) {
-                    //       value = true;
-                    //     })),
 
-                    // Radio(
-                    //     value: 0,
-                    //     groupValue: tt,
-                    //     onChanged: ((value) {
-                    //       rd = 1;
-                    //     })),
                     Padding(
                       padding: const EdgeInsets.only(left: 2),
                       child: Column(
@@ -774,22 +731,36 @@ paymentSuccessed(BuildContext context, crd) {
 lowpayment(BuildContext context) {
   return StatefulBuilder(builder: ((context, setState) {
     return AlertDialog(
-        // title: Text("ugu"),
-        content: SizedBox(
-      height: 300,
-      child: Row(
-        // ignore: prefer_const_literals_to_create_immutables, prefer_const_constructors
-        children: [
-          // ignore: prefer_const_constructors
-          Center(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30),
+        ),
+        elevation: 30,
+        backgroundColor: Color.fromARGB(255, 245, 22, 6),
+        //   title: Text("ugu"),
+        // ignore: sized_box_for_whitespace
+        content: Container(
+          height: 100,
+          child: Row(
+            // ignore: prefer_const_literals_to_create_immutables, prefer_const_constructors
+            children: [
               // ignore: prefer_const_constructors
-              child: const Text(
-            ' Your winning amout atleast Rs 150',
-            style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-          )),
-        ],
-      ),
-    ));
+              Expanded(
+                // ignore: prefer_const_constructors
+                child: Text(
+                  'Your winning amount should be atleast Rs 150!',
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  //  softWrap: true,
+                  // ignore: prefer_const_constructors
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
+                ),
+              ),
+            ],
+          ),
+        ));
   }));
 }
 

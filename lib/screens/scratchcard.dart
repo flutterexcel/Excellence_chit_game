@@ -250,27 +250,30 @@ class _ScratchPageState extends State<ScratchPage> {
                   height: 50,
                   width: 250,
                   child: ElevatedButton(
-                      onPressed: (() {
-                        getWin();
-                        // ignore: avoid_print
-                        print("bgugugu");
-                        // dialougeShow(context);/
-                        var rt = win;
-                        if (rt <= 150) {
-                          showDialog(
-                              context: context,
-                              builder: ((context) => lowpayment(context)));
-                        } else {
-                          showDialog(
-                              context: context,
-                              builder: (context) => dialougeShow(context));
-                        }
-                      }),
-                      child: const Text(
-                        'Buy Credit From Winning Price',
-                        style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold),
-                      )),
+                    onPressed: (() {
+                      getWin();
+                      // ignore: avoid_print
+                      print("bgugugu");
+                      // dialougeShow(context);/
+                      var rt = win;
+                      if (rt <= 150) {
+                        showDialog(
+                            context: context,
+                            builder: ((context) => lowpayment(context)));
+                      } else {
+                        showDialog(
+                            context: context,
+                            builder: (context) => dialougeShow(context));
+                      }
+                    }),
+                    // ignore: sort_child_properties_last
+                    child: const Text(
+                      'Buy Credit From Winning Price',
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                    ),
+                    style: ElevatedButton.styleFrom(primary: Colors.green),
+                  ),
                 )
               ],
             ),
