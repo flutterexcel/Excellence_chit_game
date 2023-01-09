@@ -2,6 +2,7 @@
 import 'dart:async';
 import 'dart:convert';
 //import 'package:chit_game/login_page.dart';
+import 'package:chit_game_android/auth/profileF.dart';
 import 'package:chit_game_android/authentication/google_auth.dart';
 import 'package:chit_game_android/controller/login_controller.dart';
 import 'package:flutter/material.dart';
@@ -27,8 +28,15 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+
     checkUser();
   }
+
+  // removeData() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   prefs.remove("userData");
+  //   print("jouihyguhbjn");
+  // }
 
   checkUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -45,10 +53,15 @@ class _SplashScreenState extends State<SplashScreen> {
       });
     } else {
       Map userData = jsonDecode(rt);
-
       controller.getUserDetails(context, userData);
-      Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (context) => Profile()));
+      print('qqqq$userData');
+      if (controller.check == 1) {
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => Profile()));
+      } else {
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => ProfileF()));
+      }
     }
   }
 
