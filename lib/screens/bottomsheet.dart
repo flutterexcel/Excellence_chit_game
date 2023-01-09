@@ -2,6 +2,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 import '../controller/login_controller.dart';
@@ -22,9 +23,9 @@ showModasheet(
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(30), topRight: Radius.circular(30))),
       context: context,
-      builder: (context) {
+      builder: (context4) {
         return StatefulBuilder(
-            builder: (BuildContext context, StateSetter setState) {
+            builder: (BuildContext context2, StateSetter setState) {
           return Wrap(children: [
             Padding(
               padding: const EdgeInsets.all(15.0),
@@ -340,9 +341,28 @@ showModasheet(
                         onPressed: () {
                           var pr = crd;
                           if (pr == 0) {
-                            showDialog(
-                                context: context,
-                                builder: ((context) => option(context)));
+                            // Toast.show('hrhrf');
+                            Fluttertoast.showToast(
+                                backgroundColor: Colors.red,
+                                msg: "Please select one option !",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.CENTER,
+                                timeInSecForIosWeb: 1,
+                                textColor: Colors.white,
+                                fontSize: 16.0);
+
+                            // showDialog(
+                            //     context: context,
+                            //     builder: ((context) => option(context)));
+                            // ScaffoldMessenger.of(context4)
+                            //     .showSnackBar(SnackBar(
+                            //   content: const Text('snack'),
+                            //   duration: const Duration(seconds: 1),
+                            //   action: SnackBarAction(
+                            //     label: 'ACTION',
+                            //     onPressed: () {},
+                            //   ),
+                            // ));
                           } else {
                             Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
@@ -767,24 +787,26 @@ lowpayment(BuildContext context) {
 option(BuildContext context) {
   return StatefulBuilder(builder: ((context, setState) {
     return AlertDialog(
+        backgroundColor: Color.fromARGB(255, 141, 109, 4),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         // title: Text("ugu"),
         content: SizedBox(
-      height: 150,
-      child: Row(
-        // ignore: prefer_const_literals_to_create_immutables, prefer_const_constructors
-        children: [
-          // ignore: prefer_const_constructors
-          Center(
+          height: 150,
+          child: Row(
+            // ignore: prefer_const_literals_to_create_immutables, prefer_const_constructors
+            children: [
               // ignore: prefer_const_constructors
-              child: Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: const Text(
-              'Please select one option',
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-            ),
-          )),
-        ],
-      ),
-    ));
+              Center(
+                  // ignore: prefer_const_constructors
+                  child: Padding(
+                padding: const EdgeInsets.only(left: 15),
+                child: const Text(
+                  'Please select one option',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              )),
+            ],
+          ),
+        ));
   }));
 }
