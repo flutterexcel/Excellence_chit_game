@@ -1,6 +1,8 @@
-// ignore_for_file: prefer_const_constructors, use_full_hex_values_for_flutter_colors, duplicate_ignore, avoid_print
+// ignore_for_file: prefer_const_constructors, use_full_hex_values_for_flutter_colors, duplicate_ignore, avoid_print, unused_import
 
+// ignore: unused_import
 import 'package:chit_game_android/auth/profileF.dart';
+// ignore: unused_import
 import 'package:chit_game_android/auth/result.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
@@ -11,6 +13,7 @@ import '../controller/login_controller.dart';
 
 // import 'package:chit_game/login_controller.dart';
 class GoogleAuth extends StatefulWidget {
+  // ignore: prefer_const_constructors_in_immutables
   GoogleAuth({super.key});
 
   @override
@@ -134,52 +137,4 @@ class _GoogleAuthState extends State<GoogleAuth> {
       ),
     );
   }
-<<<<<<< HEAD
-
-  Future facebookLogin(BuildContext context) async {
-    // ignore: avoid_print
-    print("FaceBook");
-    try {
-      final result =
-          await FacebookAuth.i.login(permissions: ['public_profile', 'email']);
-      // ignore: avoid_print
-      print("ghghgh");
-      if (result.status == LoginStatus.success) {
-        final userData = await FacebookAuth.i.getUserData();
-        print('cccc$userData');
-        // ignore: avoid_print
-        print("hello");
-        // ignore: use_build_context_synchronously
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Result(userData)));
-
-        // ignore: avoid_print
-        print(userData['name']);
-        // ignore: avoid_print
-        print('AAAAAAA');
-      }
-      print("sgsgsg");
-    } catch (error) {
-      print(error);
-    }
-  }
-
-  // FloatingActionButton buildlogifnbutton(context) {
-  //   return FloatingActionButton.extended(
-  //     onPressed: (() {
-  //       facebookLogin(context);
-  //     }),
-  //     icon: Image.asset(
-  //       'assets/images/facebook_logo.png',
-  //       height: 32,
-  //       width: 32,
-  //     ),
-  //     label: const Text('Sign in with facebook'),
-  //     backgroundColor: Colors.white,
-  //     foregroundColor: Colors.black,
-  //   );
-  // }
-
-=======
->>>>>>> d8d17ab823a597a47ee86dd17073a660af440165
 }

@@ -2,6 +2,7 @@
 
 // import 'dart:html';
 
+import 'package:chit_game_android/screens/profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -155,6 +156,10 @@ class _ScratchPageState extends State<ScratchPage> {
               }, onSelected: (value) {
                 if (value == 1) {
                   widget.controller.logout(context);
+                  // Navigator.pushAndRemoveUntil(
+                  //     context,
+                  //     MaterialPageRoute(builder: (context) => Profile()),
+                  //     (Route<dynamic> route) => false);
                 }
               }),
             ],
