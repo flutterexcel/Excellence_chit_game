@@ -273,8 +273,13 @@ class _ScratchPageState extends State<ScratchPage> {
                       style:
                           TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     ),
+<<<<<<< HEAD
                     // ignore: deprecated_member_use
                     style: ElevatedButton.styleFrom(primary: Colors.green),
+=======
+                    style: ElevatedButton.styleFrom(
+                        primary: Color.fromARGB(88, 240, 108, 14)),
+>>>>>>> 67f637fc113aabe85a1a71bc6c623c4fefa316ab
                   ),
                 )
               ],
@@ -293,16 +298,27 @@ class _ScratchPageState extends State<ScratchPage> {
       shape: RoundedRectangleBorder(
           side: const BorderSide(color: Colors.black),
           borderRadius: BorderRadius.circular(50)),
-      child: Container(
-        height: 90,
-        width: 90,
-        decoration: const BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(30))),
+      child: Card(
+        // height: 90,
+        // width: 90,
+        clipBehavior: Clip.antiAlias,
+        borderOnForeground: true,
+        shadowColor: Colors.black,
+        elevation: 30,
+        color: Color.fromARGB(255, 4, 227, 93),
+        shape: RoundedRectangleBorder(
+            side: const BorderSide(color: Colors.black),
+            borderRadius: BorderRadius.circular(70)),
         child: Scratcher(
-          // enabled: false,
+          // enabled: true,
           brushSize: 80,
+<<<<<<< HEAD
           threshold: 200,
           accuracy: ScratchAccuracy.medium,
+=======
+          threshold: 90,
+          accuracy: ScratchAccuracy.low,
+>>>>>>> 67f637fc113aabe85a1a71bc6c623c4fefa316ab
 
           color: const Color.fromARGB(255, 89, 159, 229),
           onThreshold: () {
@@ -392,7 +408,8 @@ class _ScratchPageState extends State<ScratchPage> {
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
                                 // letterSpacing: 1,
-                                color: Color.fromARGB(255, 52, 89, 9),
+                                // color: Color.fromARGB(255, 52, 89, 9),
+                                color: Color.fromARGB(255, 7, 7, 241),
                               ),
                             ),
                           ),
@@ -412,7 +429,8 @@ class _ScratchPageState extends State<ScratchPage> {
                                 // ignore: prefer_const_constructors
                                 style: TextStyle(
                                     // ignore: prefer_const_constructors
-                                    color: Color.fromARGB(255, 239, 212, 131),
+                                    // color: Color.fromARGB(255, 7, 7, 241),
+                                    color: Color.fromARGB(255, 184, 2, 2),
                                     fontWeight: FontWeight.bold,
                                     fontSize: 16),
                               ),
