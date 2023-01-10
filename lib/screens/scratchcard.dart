@@ -299,8 +299,8 @@ class _ScratchPageState extends State<ScratchPage> {
         child: Scratcher(
           // enabled: false,
           brushSize: 80,
-          threshold: 25,
-          accuracy: ScratchAccuracy.low,
+          threshold: 200,
+          accuracy: ScratchAccuracy.medium,
 
           color: const Color.fromARGB(255, 89, 159, 229),
           onThreshold: () {
