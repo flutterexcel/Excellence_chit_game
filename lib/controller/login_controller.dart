@@ -63,6 +63,7 @@ class LoginController extends GetxController {
           "Credit": 10,
           "Winingprice": 0
         };
+        print('iuiu$googleuser');
         await FirebaseFirestore.instance
             .collection('users')
             .doc(googleAccount.value!.id)
@@ -91,10 +92,11 @@ class LoginController extends GetxController {
   // }
 
   loginn(context) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
     print('oooo');
     final LoginResult result = await FacebookAuth.instance
-        .login(loginBehavior: LoginBehavior.dialogOnly);
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+        .login(permissions: ['public_profile', 'email']);
 
     // print('dddd$_accessToken');
     if (result.status == LoginStatus.success) {
@@ -108,14 +110,38 @@ class LoginController extends GetxController {
         "photo": userDataa['picture']['data']['url'],
         "id": userDataa['id'],
       };
-      prefs.setString("userData", json.encode(userData));
-      if (prefs.getString("id_value") == null) {
-        _demoStore(userData!['id']);
+      // prefs.setString("userData", json.encode(userData));
+      // if (prefs.getString("id_value") == null) {
+      //   _demoStore(userData!['id']);
+      // }
+      if (userData != null) {
+        prefs.setString("userData", json.encode(userData));
       }
       print('eeee$userData');
       if (userData!['email'] != null) {
         Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => ProfileF()));
+            MaterialPageRoute(builder: (context) => Profile()));
+        if (prefs.getString("id_value") == null) {
+          _demoStore(userData!['id']);
+        }
+        print('iyuuhy${prefs.getString("id_value")}');
+        print('bhggt${userData!['id']}');
+        if (userData!['id'] != prefs.getString("id_value")) {
+          print('ppp$userData');
+          final googleuser = {
+            "name": userDataa['name'],
+            "email": userDataa['email'],
+            "id": userDataa['id'],
+            "photoUrl": userDataa['picture']['data']['url'],
+            "Credit": 10,
+            "Winingprice": 0
+          };
+          print('yyy$googleuser');
+          await FirebaseFirestore.instance
+              .collection('users')
+              .doc(userData!['id'])
+              .set(googleuser, SetOptions(merge: true));
+        }
       }
       print("nvg$userData");
     } else {
@@ -125,6 +151,23 @@ class LoginController extends GetxController {
     // setState(() {
     //   _checking = false;
     // });
+    // if (userData!['id'] != prefs.getString("id_value")) {
+    //   print('ppp$userData');
+    //   final facebooku = {
+    //     "name": userData!['name'],
+    //     "email": userData!['email'],
+    //     "id": userData!['id'],
+    //     "photoUrl": userData!['picture']['data']['url'],
+    //     "Credit": 10,
+    //     "Winingprice": 0
+    //   };
+    //   print('yyy$facebooku');
+    //   await FirebaseFirestore.instance
+    //       .collection('fuser')
+    //       .doc(userData!['id'])
+    //       .set(facebooku, SetOptions(merge: true));
+    // }
+
     if (prefs.getString("checking") == null) {
       signinmethod('facebook');
     }
@@ -132,8 +175,8 @@ class LoginController extends GetxController {
 
   logoutt(context) async {
     print('mmmmmmm');
-    await FacebookAuth.instance.logOut();
-    FirebaseAuth.instance.signOut();
+    await FirebaseAuth.instance.signOut();
+    FacebookAuth.instance.logOut();
     // accessToken = null;
     // LoginResult result = null;
     SharedPreferences prefs = await SharedPreferences.getInstance();

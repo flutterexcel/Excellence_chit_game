@@ -120,7 +120,10 @@ class _ProfileState extends State<Profile> {
             style: TextStyle(color: Colors.white),
           ),
           onPressed: () {
+            print('yoyo');
+            widget.controller.logoutt(context);
             widget.controller.logout(context);
+
             // if (googleAccount.value!.displayName == null) {
             //   Navigator.of(context)
             //       .push(MaterialPageRoute(builder: (context) => GoogleAuth()));

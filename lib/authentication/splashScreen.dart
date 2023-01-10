@@ -28,13 +28,15 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-
+    // removeData();
     checkUser();
   }
 
   // removeData() async {
   //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   prefs.remove("id_value");
   //   prefs.remove("userData");
+
   //   print("jouihyguhbjn");
   // }
 
@@ -56,15 +58,16 @@ class _SplashScreenState extends State<SplashScreen> {
       print('wwww$rt');
       controller.getUserDetails(context, userData);
       print('qqqq$userData');
-      if (prefs.getString("checking") == 'google') {
-        print('nnjnjnh');
-        Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => Profile()));
-      } else {
-        print('ooo');
-        Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => ProfileF()));
-      }
+      // if (prefs.getString("checking") == 'google') {
+      //   print('nnjnjnh');
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (context) => Profile()));
+      // }
+      // } else {
+      //   print('ooo');
+      //   Navigator.of(context).pushReplacement(
+      //       MaterialPageRoute(builder: (context) => ProfileF()));
+      // }
     }
   }
 
