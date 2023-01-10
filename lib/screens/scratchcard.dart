@@ -72,7 +72,7 @@ class _ScratchPageState extends State<ScratchPage> {
         .snapshots()
         .listen((event) {
       // ignore: avoid_print
-      print("higuybh${event.data()!['Winingprice']}");
+      print("chchc${event.data()!['Winingprice']}");
       win = event.data()!['Winingprice'];
       setState(() {});
     });
@@ -92,7 +92,7 @@ class _ScratchPageState extends State<ScratchPage> {
         .snapshots()
         .listen((event) {
       // ignore: avoid_print
-      print("higuybh${event.data()!['Credit']}");
+      print("uybh${event.data()!['Credit']}");
       cred = event.data()!['Credit'];
       // ignore: avoid_print
       print('yyyy$cred');
@@ -161,6 +161,7 @@ class _ScratchPageState extends State<ScratchPage> {
               }, onSelected: (value) {
                 if (value == 1) {
                   widget.controller.logout(context);
+                  widget.controller.logoutt(context);
                   // Navigator.pushAndRemoveUntil(
                   //     context,
                   //     MaterialPageRoute(builder: (context) => Profile()),
