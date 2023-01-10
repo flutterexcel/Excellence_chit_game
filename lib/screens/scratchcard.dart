@@ -273,6 +273,7 @@ class _ScratchPageState extends State<ScratchPage> {
                       style:
                           TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     ),
+                    // ignore: deprecated_member_use
                     style: ElevatedButton.styleFrom(primary: Colors.green),
                   ),
                 )

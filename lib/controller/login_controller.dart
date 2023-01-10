@@ -208,5 +208,3 @@ class LoginController extends GetxController {
     };
   }
 }
-
-//implementation of facebook_auth_flutter ?
