@@ -24,6 +24,7 @@ class ScratchPage extends StatefulWidget {
 
 class _ScratchPageState extends State<ScratchPage> {
   late ConfettiController _topController;
+  late int ani;
 
   int count = 0;
   List<dynamic> winprice = [
@@ -367,8 +368,11 @@ class _ScratchPageState extends State<ScratchPage> {
                   // break;
                 }
               }
-              if (winprice[index] != 'Better luck next time' &&
-                  isfinished[index] == true) {
+              // if (winprice[index] != 'Better luck next time' &&
+              //     isfinished[index] == true) {
+              //   _topController.play();
+              // }
+              if (index == ani) {
                 _topController.play();
               }
 
@@ -383,6 +387,7 @@ class _ScratchPageState extends State<ScratchPage> {
           },
 
           onScratchStart: (() {
+            ani = index;
             if (cred == 0) {
               showModasheet(context);
             }
@@ -429,7 +434,7 @@ class _ScratchPageState extends State<ScratchPage> {
                                   color: Color.fromARGB(255, 7, 7, 241),
                                 ),
                               ),
-                              (isfinished[index] == true)
+                              (isfinished[index] == true && index == ani)
                                   ? Align(
                                       alignment: Alignment.center,
                                       child: ConfettiWidget(
