@@ -23,7 +23,6 @@ class ScratchPage extends StatefulWidget {
 }
 
 class _ScratchPageState extends State<ScratchPage> {
-  late int ani;
   late ConfettiController _topController;
 
   int count = 0;
@@ -220,7 +219,6 @@ class _ScratchPageState extends State<ScratchPage> {
                 GridView.builder(
                   shrinkWrap: true,
                   itemCount: 12,
-                  // itemCount: winprice.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3,
                       crossAxisSpacing: 4.0,
@@ -369,10 +367,8 @@ class _ScratchPageState extends State<ScratchPage> {
                   // break;
                 }
               }
-              // if (winprice[index] != 'Better luck next time') {
-              //   _topController.play();
-              // }
-              if (index == ani) {
+              if (winprice[index] != 'Better luck next time' &&
+                  isfinished[index] == true) {
                 _topController.play();
               }
 
@@ -387,7 +383,6 @@ class _ScratchPageState extends State<ScratchPage> {
           },
 
           onScratchStart: (() {
-            ani = index;
             if (cred == 0) {
               showModasheet(context);
             }
@@ -434,7 +429,7 @@ class _ScratchPageState extends State<ScratchPage> {
                                   color: Color.fromARGB(255, 7, 7, 241),
                                 ),
                               ),
-                              (isfinished[index] == true && index == ani)
+                              (isfinished[index] == true)
                                   ? Align(
                                       alignment: Alignment.center,
                                       child: ConfettiWidget(
