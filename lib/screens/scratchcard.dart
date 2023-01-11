@@ -1,8 +1,6 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, unused_field, use_full_hex_values_for_flutter_colors, duplicate_ignore
+// ignore_for_file: prefer_const_literals_to_create_immutables, unused_field, use_full_hex_values_for_flutter_colors, duplicate_ignore, duplicate_import
 
 // import 'dart:html';
-
-import 'dart:math';
 
 import 'package:chit_game_android/screens/profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -18,7 +16,7 @@ import 'profile.dart';
 class ScratchPage extends StatefulWidget {
   ScratchPage({super.key});
   final controller = Get.put(LoginController());
-  final controllerr = ConfettiController();
+  // final controllerr = ConfettiController();
 
   @override
   State<ScratchPage> createState() => _ScratchPageState();
@@ -26,6 +24,7 @@ class ScratchPage extends StatefulWidget {
 
 class _ScratchPageState extends State<ScratchPage> {
   late ConfettiController _topController;
+
   int count = 0;
   List<dynamic> winprice = [
     '10',
@@ -60,6 +59,7 @@ class _ScratchPageState extends State<ScratchPage> {
   @override
   void initState() {
     _topController = ConfettiController(duration: const Duration(seconds: 2));
+
     super.initState();
     // getUpdate();
     winprice.shuffle();
@@ -110,7 +110,7 @@ class _ScratchPageState extends State<ScratchPage> {
       cred = event.data()!['Credit'];
       // ignore: avoid_print
       print('yyyy$cred');
-      // setState(() {});
+      setState(() {});
     });
   }
 
@@ -221,13 +221,8 @@ class _ScratchPageState extends State<ScratchPage> {
                   itemCount: 12,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3,
-<<<<<<< HEAD
                       crossAxisSpacing: 4.0,
                       mainAxisSpacing: 4.0),
-=======
-                      crossAxisSpacing: 8.0,
-                      mainAxisSpacing: 15.0),
->>>>>>> 1204b8aa5700575c2a116b087b8f15e7dc21985d
                   itemBuilder: (BuildContext context, int index) {
                     return showScratchCard(context, index);
                   },
@@ -313,94 +308,6 @@ class _ScratchPageState extends State<ScratchPage> {
       shape: RoundedRectangleBorder(
           side: const BorderSide(color: Colors.black),
           borderRadius: BorderRadius.circular(50)),
-<<<<<<< HEAD
-      child: ConfettiWidget(
-        confettiController: widget.controllerr,
-        blastDirectionality: BlastDirectionality.explosive,
-        shouldLoop: true,
-        emissionFrequency: 0.4,
-        numberOfParticles: 100,
-        gravity: 0.8,
-        colors: [
-          Colors.red,
-          Colors.blueGrey,
-          Colors.blue,
-          Color.fromARGB(255, 252, 231, 48)
-        ],
-        child: Card(
-          // height: 90,
-          // width: 90,
-          clipBehavior: Clip.antiAlias,
-          borderOnForeground: true,
-          shadowColor: Colors.black,
-          elevation: 30,
-          // ignore: prefer_const_constructors
-          color: Color.fromARGB(255, 4, 227, 93),
-          shape: RoundedRectangleBorder(
-              side: const BorderSide(color: Colors.black),
-              borderRadius: BorderRadius.circular(70)),
-          child: Scratcher(
-            // enabled: true,
-            brushSize: 80,
-            threshold: 90,
-            accuracy: ScratchAccuracy.low,
-
-            color: const Color.fromARGB(255, 89, 159, 229),
-            onThreshold: () {
-              setState(() {
-                _opacity = 1;
-                // ignore: avoid_print
-                print('aaaaaaa$_opacity');
-              });
-            },
-            // onScratchEnd: () =>  getUpdate() && getWinUpdate(index),
-            onScratchEnd: () {
-              count++;
-              if (isfinished[index] == true) {
-                // ignore: avoid_print
-                print('t');
-              } else {
-                // ignore: avoid_print
-                print('yy');
-                getCredit();
-                if (cred > 0) {
-                  getUpdate();
-                }
-                // getWinUpdate(index);
-                isfinished[index] = true;
-                if (isfinished[index] == true && cred != 0) {
-                  getWinUpdate(index);
-                  if (winprice[index] != 'Better luck next time') {
-                    // ignore: unused_local_variable, avoid_print
-                    print('hdbgfdj');
-                    final audioPlayer = AudioPlayer();
-                    audioPlayer.play(AssetSource('2PBE8A4-huge-win.mp3'));
-                  }
-                }
-                // ignore: avoid_print
-                print('oo$isfinished');
-                var ct = 0;
-                for (int i = 0; i < isfinished.length; i++) {
-                  if (isfinished[i]) {
-                    ct++;
-                    // break;
-                  }
-                }
-
-                if (ct == 12) {
-                  Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => ScratchPage()));
-                }
-              }
-              // getCredit();
-              // getWinUpdate(index);
-              // setState(() {});
-            },
-
-            onScratchStart: (() {
-              if (cred == 0) {
-                showModasheet(context);
-=======
       child: Card(
         // height: 90,
         // width: 90,
@@ -408,13 +315,14 @@ class _ScratchPageState extends State<ScratchPage> {
         borderOnForeground: true,
         shadowColor: Colors.black,
         elevation: 30,
+        // ignore: prefer_const_constructors
         color: Color.fromARGB(255, 4, 227, 93),
         shape: RoundedRectangleBorder(
             side: const BorderSide(color: Colors.black),
             borderRadius: BorderRadius.circular(70)),
         child: Scratcher(
           // enabled: true,
-          brushSize: 100,
+          brushSize: 80,
           threshold: 90,
           accuracy: ScratchAccuracy.low,
 
@@ -422,18 +330,16 @@ class _ScratchPageState extends State<ScratchPage> {
           onThreshold: () {
             setState(() {
               _opacity = 1;
+              // ignore: avoid_print
+              print('aaaaaaa$_opacity');
             });
           },
           // onScratchEnd: () =>  getUpdate() && getWinUpdate(index),
           onScratchEnd: () {
-            // _topController.play();
             count++;
             if (isfinished[index] == true) {
               // ignore: avoid_print
               print('t');
-              // if (winprice[index] != 'Better luck next time') {
-              //   getWinUpdate(index);
-              // }
             } else {
               // ignore: avoid_print
               print('yy');
@@ -445,6 +351,12 @@ class _ScratchPageState extends State<ScratchPage> {
               isfinished[index] = true;
               if (isfinished[index] == true && cred != 0) {
                 getWinUpdate(index);
+                if (winprice[index] != 'Better luck next time') {
+                  // ignore: unused_local_variable, avoid_print
+                  print('hdbgfdj');
+                  final audioPlayer = AudioPlayer();
+                  audioPlayer.play(AssetSource('2PBE8A4-huge-win.mp3'));
+                }
               }
               // ignore: avoid_print
               print('oo$isfinished');
@@ -459,43 +371,17 @@ class _ScratchPageState extends State<ScratchPage> {
                   isfinished[index] == true) {
                 _topController.play();
               }
+
               if (ct == 12) {
                 Navigator.of(context).pushReplacement(
                     MaterialPageRoute(builder: (context) => ScratchPage()));
->>>>>>> 1204b8aa5700575c2a116b087b8f15e7dc21985d
               }
-              // else {
-              //   getUpdate();
-              // }
-            }),
+            }
+            // getCredit();
+            // getWinUpdate(index);
+            // setState(() {});
+          },
 
-<<<<<<< HEAD
-            // onChange: (value) => print("Scratch progress: $value%"),
-            // onChange: ((value) {
-            //   print("gugygg$value");
-            //   if (value > 50) {
-            //     getWinUpdate(index);
-            //   }
-            // }),
-            // : (value) => print("object"),
-            // onThreshold: () => print("Threshold reached"),
-            child: SingleChildScrollView(
-              // ignore: sized_box_for_whitespace
-              child: Container(
-                height: 90,
-                width: 90,
-                // ignore: prefer_const_constructors
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  // crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    // for (int i = 0; i < winprice.length; i++)
-                    (winprice[index] != 'Better luck next time')
-                        ? Padding(
-                            padding: const EdgeInsets.only(
-                                top: 25, left: 4, right: 4),
-                            child: Center(
-=======
           onScratchStart: (() {
             if (cred == 0) {
               showModasheet(context);
@@ -553,17 +439,13 @@ class _ScratchPageState extends State<ScratchPage> {
                                         maxBlastForce: 5,
                                         minBlastForce: 1,
                                         emissionFrequency: 0.01,
-
                                         // 10 paticles will pop-up at a time
-                                        numberOfParticles: 50,
-
+                                        numberOfParticles: 100,
                                         // particles will come down
-                                        gravity: .5,
-
+                                        gravity: .3,
                                         // start again as soon as the
                                         // animation is finished
                                         // shouldLoop: true,
-
                                         // assign colors of any choice
                                         colors: const [
                                           Colors.green,
@@ -576,6 +458,19 @@ class _ScratchPageState extends State<ScratchPage> {
                                     )
                                   : SizedBox()
                             ]),
+
+                            // child: Text(
+                            //   "You won    Rs ${winprice[index]}",
+                            //   textAlign: TextAlign.center,
+                            //   maxLines: 2,
+                            //   style: const TextStyle(
+                            //     fontWeight: FontWeight.bold,
+                            //     fontSize: 16,
+                            //     // letterSpacing: 1,
+                            //     // color: Color.fromARGB(255, 52, 89, 9),
+                            //     color: Color.fromARGB(255, 7, 7, 241),
+                            //   ),
+                            // ),
                           ),
                         )
                       : Column(
@@ -586,50 +481,26 @@ class _ScratchPageState extends State<ScratchPage> {
                             Padding(
                               padding: const EdgeInsets.only(top: 27),
                               // ignore: prefer_const_constructors
->>>>>>> 1204b8aa5700575c2a116b087b8f15e7dc21985d
                               child: Text(
-                                "You won    Rs ${winprice[index]}",
+                                'Better luck next time',
                                 textAlign: TextAlign.center,
                                 maxLines: 2,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                  // letterSpacing: 1,
-                                  // color: Color.fromARGB(255, 52, 89, 9),
-                                  color: Color.fromARGB(255, 7, 7, 241),
-                                ),
+                                // ignore: prefer_const_constructors
+                                style: TextStyle(
+                                    // ignore: prefer_const_constructors
+                                    // color: Color.fromARGB(255, 7, 7, 241),
+                                    color: const Color.fromARGB(255, 184, 2, 2),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16),
                               ),
                             ),
-                          )
-                        : Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              // ignore: prefer_const_constructors
-                              Padding(
-                                padding: const EdgeInsets.only(top: 27),
-                                // ignore: prefer_const_constructors
-                                child: Text(
-                                  'Better luck next time',
-                                  textAlign: TextAlign.center,
-                                  maxLines: 2,
-                                  // ignore: prefer_const_constructors
-                                  style: TextStyle(
-                                      // ignore: prefer_const_constructors
-                                      // color: Color.fromARGB(255, 7, 7, 241),
-                                      color: Color.fromARGB(255, 184, 2, 2),
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16),
-                                ),
-                              ),
-                            ],
-                          ),
-                    // const SizedBox(
-                    //   height: 5,
-                    // ),
-                    // Center(child: Text(winprice[index])),
-                  ],
-                ),
+                          ],
+                        ),
+                  // const SizedBox(
+                  //   height: 5,
+                  // ),
+                  // Center(child: Text(winprice[index])),
+                ],
               ),
             ),
           ),

@@ -198,14 +198,10 @@ class _RazorPayState extends State<RazorPay> {
       child: const Text("Continue"),
       onPressed: () {
         Navigator.of(context, rootNavigator: true).pop('dialog');
-<<<<<<< HEAD
-        Navigator.pop(context);
-=======
         // Navigator.pop(context);
         Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => ScratchPage()));
         // Nav
->>>>>>> 1204b8aa5700575c2a116b087b8f15e7dc21985d
 
         // showAlertDialog.dismiss();
         // Navigator.pop(context);
