@@ -2,6 +2,7 @@
 import 'dart:async';
 import 'dart:convert';
 //import 'package:chit_game/login_page.dart';
+// ignore: unused_import
 import 'package:chit_game_android/auth/profileF.dart';
 import 'package:chit_game_android/authentication/google_auth.dart';
 import 'package:chit_game_android/controller/login_controller.dart';

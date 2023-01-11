@@ -198,7 +198,6 @@ class _RazorPayState extends State<RazorPay> {
       onPressed: () {
         Navigator.of(context, rootNavigator: true).pop('dialog');
         Navigator.pop(context);
-        // Nav
 
         // showAlertDialog.dismiss();
         // Navigator.pop(context);
