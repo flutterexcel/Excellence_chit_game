@@ -2,8 +2,11 @@
 
 // import 'dart:html';
 
+import 'dart:math';
+
 import 'package:chit_game_android/screens/profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scratcher/widgets.dart';
@@ -20,6 +23,7 @@ class ScratchPage extends StatefulWidget {
 }
 
 class _ScratchPageState extends State<ScratchPage> {
+  late ConfettiController _topController;
   int count = 0;
   List<dynamic> winprice = [
     '10',
@@ -53,11 +57,19 @@ class _ScratchPageState extends State<ScratchPage> {
   ];
   @override
   void initState() {
+    _topController = ConfettiController(duration: const Duration(seconds: 2));
     super.initState();
     // getUpdate();
     winprice.shuffle();
     getCredit();
     getWin();
+  }
+
+  @override
+  void dispose() {
+    // dispose the controller
+    _topController.dispose();
+    super.dispose();
   }
 
   num winp = 0;
@@ -96,7 +108,7 @@ class _ScratchPageState extends State<ScratchPage> {
       cred = event.data()!['Credit'];
       // ignore: avoid_print
       print('yyyy$cred');
-      setState(() {});
+      // setState(() {});
     });
   }
 
@@ -208,7 +220,7 @@ class _ScratchPageState extends State<ScratchPage> {
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3,
                       crossAxisSpacing: 8.0,
-                      mainAxisSpacing: 8.0),
+                      mainAxisSpacing: 15.0),
                   itemBuilder: (BuildContext context, int index) {
                     return showScratchCard(context, index);
                   },
@@ -306,7 +318,7 @@ class _ScratchPageState extends State<ScratchPage> {
             borderRadius: BorderRadius.circular(70)),
         child: Scratcher(
           // enabled: true,
-          brushSize: 80,
+          brushSize: 100,
           threshold: 90,
           accuracy: ScratchAccuracy.low,
 
@@ -318,6 +330,7 @@ class _ScratchPageState extends State<ScratchPage> {
           },
           // onScratchEnd: () =>  getUpdate() && getWinUpdate(index),
           onScratchEnd: () {
+            // _topController.play();
             count++;
             if (isfinished[index] == true) {
               // ignore: avoid_print
@@ -345,6 +358,10 @@ class _ScratchPageState extends State<ScratchPage> {
                   ct++;
                   // break;
                 }
+              }
+              if (winprice[index] != 'Better luck next time' &&
+                  isfinished[index] == true) {
+                _topController.play();
               }
               if (ct == 12) {
                 Navigator.of(context).pushReplacement(
@@ -390,18 +407,52 @@ class _ScratchPageState extends State<ScratchPage> {
                           padding:
                               const EdgeInsets.only(top: 25, left: 4, right: 4),
                           child: Center(
-                            child: Text(
-                              "You won    Rs ${winprice[index]}",
-                              textAlign: TextAlign.center,
-                              maxLines: 2,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                                // letterSpacing: 1,
-                                // color: Color.fromARGB(255, 52, 89, 9),
-                                color: Color.fromARGB(255, 7, 7, 241),
+                            child: Stack(children: [
+                              Text(
+                                "You won    Rs ${winprice[index]}",
+                                textAlign: TextAlign.center,
+                                maxLines: 2,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                  // letterSpacing: 1,
+                                  // color: Color.fromARGB(255, 52, 89, 9),
+                                  color: Color.fromARGB(255, 7, 7, 241),
+                                ),
                               ),
-                            ),
+                              (isfinished[index] == true)
+                                  ? Align(
+                                      alignment: Alignment.center,
+                                      child: ConfettiWidget(
+                                        confettiController: _topController,
+                                        blastDirectionality:
+                                            BlastDirectionality.explosive,
+                                        maxBlastForce: 5,
+                                        minBlastForce: 1,
+                                        emissionFrequency: 0.01,
+
+                                        // 10 paticles will pop-up at a time
+                                        numberOfParticles: 50,
+
+                                        // particles will come down
+                                        gravity: .5,
+
+                                        // start again as soon as the
+                                        // animation is finished
+                                        // shouldLoop: true,
+
+                                        // assign colors of any choice
+                                        colors: const [
+                                          Colors.green,
+                                          Colors.yellow,
+                                          Colors.pink,
+                                          Colors.orange,
+                                          Colors.blue
+                                        ],
+                                      ),
+                                    )
+                                  : SizedBox()
+                            ]),
                           ),
                         )
                       : Column(

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
+import '../screens/scratchcard.dart';
 import '../service/services.dart';
 import 'login_controller.dart';
 
@@ -47,7 +48,7 @@ class _RazorPayState extends State<RazorPay> {
       cred = event.data()!['Credit'];
       // ignore: avoid_print
       print('yyyy$cred');
-      setState(() {});
+      // setState(() {});
     });
   }
 
@@ -197,7 +198,9 @@ class _RazorPayState extends State<RazorPay> {
       child: const Text("Continue"),
       onPressed: () {
         Navigator.of(context, rootNavigator: true).pop('dialog');
-        Navigator.pop(context);
+        // Navigator.pop(context);
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => ScratchPage()));
         // Nav
 
         // showAlertDialog.dismiss();

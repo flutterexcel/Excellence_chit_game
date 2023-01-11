@@ -633,9 +633,17 @@ dialougeShow(BuildContext context) {
                         context: context,
                         builder: ((context) => option(context)));
                   } else {
+                    // showDialog(
+                    //     context: context,
+                    //     builder: ((context) => paymentSuccessed(context, crd)));
                     showDialog(
                         context: context,
-                        builder: ((context) => paymentSuccessed(context, crd)));
+                        builder: (context) {
+                          Future.delayed(const Duration(seconds: 3), () {
+                            Navigator.of(context).pop(true);
+                          });
+                          return paymentSuccessed(context, crd);
+                        });
                     // ignore: avoid_print
                     print('ttrtr$crd');
                   }
@@ -722,29 +730,33 @@ paymentSuccessed(BuildContext context, crd) {
 
   return StatefulBuilder(builder: ((context, setState) {
     return AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30),
+        ),
+        backgroundColor: Colors.green,
         // title: Text("ugu"),
         content: SizedBox(
-      height: 300,
-      child: Row(
-        // ignore: prefer_const_literals_to_create_immutables, prefer_const_constructors
-        children: [
-          // ignore: prefer_const_constructors
-          Center(
+          height: 150,
+          child: Row(
+            // ignore: prefer_const_literals_to_create_immutables, prefer_const_constructors
+            children: [
               // ignore: prefer_const_constructors
-              child: Padding(
-            padding: const EdgeInsets.only(left: 20),
-            child: const Text(
-              'sucessfully',
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-            ),
-          )),
-          const Icon(
-            Icons.check_box,
-            size: 30,
-          )
-        ],
-      ),
-    ));
+              Center(
+                  // ignore: prefer_const_constructors
+                  child: Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: const Text(
+                  'Payment Successful',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              )),
+              const Icon(
+                Icons.check_box,
+                size: 30,
+              )
+            ],
+          ),
+        ));
   }));
 }
 
